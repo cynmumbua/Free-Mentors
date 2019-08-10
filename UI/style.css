@@ -1,0 +1,186 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: url("mentor_mentee.png");
+    background-size: cover;
+    /*background-position: center;*/
+    font-family: sans-serif;
+}
+
+.login{
+    width: 320px;
+    height: auto;
+    background:#003380;
+    color: #fff;
+    top: 50%;
+    left: 52%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 5px 30px;
+    border-radius: 40px;
+}
+
+h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.login p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.login input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login input[type="text"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #ff0066;
+    font-size: 16px;
+}
+.login input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    background:#ff0066;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.login input[type="submit"]:hover
+{
+    cursor: pointer;
+    background:#66b3ff;
+    color: #000;
+}
+.login a{
+    /*text-decoration: none;*/
+    font-size: 12px;
+    line-height: 20px;
+    color:#ff0066;
+    text-align: center;
+}
+
+.login a:hover
+{
+    color: #66b3ff;
+}
+.parent {
+  /*background:#66b3ff;*/
+  padding: 1rem
+}
+.mentor{
+    width:200px; 
+    height:200px;
+    display: inline-block;
+    border: 1px solid indigo;
+    padding: 1rem;
+    background-color:#003380;
+}
+.mentor img{
+    padding: 0 30px 0 30px;
+    /*margin: 0 auto;*/
+}
+.user{
+    width: 100px;
+    height:100px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.view img{
+    padding: 0 30px 0 30px;
+}
+.view{
+    width: 500px;
+    height: auto;
+    border: 1px solid indigo;
+    /*top: 50%;
+    left: 50%;*/
+    margin: 30px auto 30px auto;
+    /*margin-top: -50px;
+    margin-left: -50px;*/
+    background-color:#003380;  
+
+}
+.Dashboard{
+    width: auto;
+    height: 70px;
+    background-color:#003380;  
+    color: #fff;
+    font-size: 30px;
+    display: flex;
+}
+.book_session button{
+    float: right;
+    background-color: #ff0066;
+    border-radius: 10px;
+    height: 40px;
+    color: #fff;
+}
+.Dashboard .logOut{
+    float: right;
+    background-color: #ff0066;
+    border-radius: 10px;
+    height: 50px;
+    margin-top: 10px;
+    width: 120px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+}
+.Dashboard p{
+    width: 100%;
+    text-align: center;
+
+}
+.Dashboard .back{
+    float: left;
+    background-color: #ff0066;
+    border-radius: 10px;
+    height: 50px;
+    margin-top: 10px;
+    width: 120px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+}
+p{
+    color: #fff;
+}
+.mentor .upgrade{
+/*    margin-top: 5px;
+*/  height:30px; 
+    width:100px; 
+/*    margin: -20px -50px; 
+*/  position:relative; 
+    left:50%;
+    background-color: #ff0066;
+    border-radius: 20px;
+    border: none;
+    color: #fff;
+}
+.mentor .accept {
+    background-color: #4CAF50;
+    border-radius: 20px;
+    border: none;
+    color: #fff;
+}
+.mentor .decline{
+    background-color: #ff0066;
+    border-radius: 20px;
+    border: none;
+    color: #fff;
+    margin-left: 85px;
+}
