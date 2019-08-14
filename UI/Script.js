@@ -84,3 +84,13 @@ bookSession.addEventListener('click', ()=>{
 	bookSession.innerHTML = "Session Booked";
 	bookSession.style.backgroundColor = "green";
 });
+
+const upgrade = document.querySelectorAll('.Upgrade');
+for(let i=0; i<upgrade.length; i++){
+	upgrade[i].addEventListener('click', ()=>{
+		upgrade[i].innerHTML = "mentor";
+		upgrade[i].style.backgroundColor= "green";
+});
+
+}
+
