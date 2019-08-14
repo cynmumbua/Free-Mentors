@@ -8,6 +8,7 @@ const occupation= document.forms['signup']['occupation'];
 const expertise= document.forms['signup']['expertise'];
 const password= document.forms['signup']['password'];
 const password_confirm= document.forms['signup']['password2'];
+const pass_confirm_div = document.getElementById('pass_confirm_div');
 
 const validate =()=>{
 	//validate first name
@@ -72,8 +73,9 @@ const validate =()=>{
 		password_confirm.style.border = "1px solid red";
         password_confirm.focus();
         password_confirm.classList.add("error");
-   		alert( "Passwords do not match!" );
+        pass_confirm_div.style.color = "white";
+        pass_confirm_div.innerHTML= "Passwords do not match!";
         return false;
 	}
-
+	
 }
