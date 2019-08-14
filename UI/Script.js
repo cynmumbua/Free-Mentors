@@ -1,4 +1,7 @@
-//selecting all text elements
+
+
+const validate =()=>{
+	//selecting all text elements
 const fName= document.forms['signup']['fName'];
 const lName= document.forms['signup']['lName'];
 const address= document.forms['signup']['address'];
@@ -8,9 +11,6 @@ const occupation= document.forms['signup']['occupation'];
 const expertise= document.forms['signup']['expertise'];
 const password= document.forms['signup']['password'];
 const password_confirm= document.forms['signup']['password2'];
-const pass_confirm_div = document.getElementById('pass_confirm_div');
-
-const validate =()=>{
 	//validate first name
 	if(fName.value == ""){
 		fName.style.border = "1px solid red";
@@ -79,3 +79,8 @@ const validate =()=>{
 	}
 	
 }
+const bookSession = document.querySelector('.view button');
+bookSession.addEventListener('click', ()=>{
+	bookSession.innerHTML = "Session Booked";
+	bookSession.style.backgroundColor = "green";
+});
