@@ -90,6 +90,27 @@ for(let i=0; i<upgrade.length; i++){
 
 }
 
+const accept =document.querySelectorAll('.accept');
+const decline= document.querySelectorAll('.decline');
+for(let i=0; i<accept.length; i++){
+	accept[i].addEventListener('click', ()=>{
+    	accept[i].innerHTML = 'Session accepted';
+    	decline[i].style.display= 'none';
+
+});
+
+}
+
+for(let i=0; i<decline.length; i++){
+	decline[i].addEventListener('click', ()=>{
+    	decline[i].innerHTML = 'Session declined';
+    	accept[i].style.display= 'none';
+
+});
+
+}
+
+
 const bookSession = document.querySelector('.bookSession');
 bookSession.addEventListener('click', ()=>{
 	bookSession.innerHTML = "Session Booked";
