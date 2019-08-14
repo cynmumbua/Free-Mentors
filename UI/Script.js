@@ -79,11 +79,7 @@ const password_confirm= document.forms['signup']['password2'];
 	}
 	
 }
-const bookSession = document.querySelector('.view button');
-bookSession.addEventListener('click', ()=>{
-	bookSession.innerHTML = "Session Booked";
-	bookSession.style.backgroundColor = "green";
-});
+
 
 const upgrade = document.querySelectorAll('.Upgrade');
 for(let i=0; i<upgrade.length; i++){
@@ -93,4 +89,10 @@ for(let i=0; i<upgrade.length; i++){
 });
 
 }
+
+const bookSession = document.querySelector('.bookSession');
+bookSession.addEventListener('click', ()=>{
+	bookSession.innerHTML = "Session Booked";
+	bookSession.style.backgroundColor = "green";
+});
 
