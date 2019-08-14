@@ -1,4 +1,8 @@
 //selecting all text elements
+
+
+const validate =()=>{
+	
 const fName= document.forms['signup']['fName'];
 const lName= document.forms['signup']['lName'];
 const address= document.forms['signup']['address'];
@@ -9,7 +13,6 @@ const expertise= document.forms['signup']['expertise'];
 const password= document.forms['signup']['password'];
 const password_confirm= document.forms['signup']['password2'];
 
-const validate =()=>{
 	//validate first name
 	if(fName.value == ""){
 		fName.style.border = "1px solid red";
@@ -75,5 +78,25 @@ const validate =()=>{
    		alert( "Passwords do not match!" );
         return false;
 	}
+	
 
 }
+
+const validateLogin =()=>{
+	const username= document.forms['login']['email'];
+	const password= document.forms['login']['password']
+	if(username.value == ""){
+		username.style.border = "1px solid red";
+        username.focus();
+        username.classList.add("error");
+        return false;
+	}
+	if(password.value == ""){
+		password.style.border = "1px solid red";
+        password.focus();
+        password.classList.add("error");
+        return false;
+	}
+}
+
+
