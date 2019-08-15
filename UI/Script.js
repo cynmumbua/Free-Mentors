@@ -1,5 +1,4 @@
 
-
 const validate =()=>{
 	//selecting all text elements
 const fName= document.forms['signup']['fName'];
@@ -79,6 +78,24 @@ const password_confirm= document.forms['signup']['password2'];
 	}
 	
 }
+
+const validateLogin =()=>{
+	const username= document.forms['login']['email'];
+	const password= document.forms['login']['password']
+	if(username.value == ""){
+		username.style.border = "1px solid red";
+        username.focus();
+        username.classList.add("error");
+        return false;
+	}
+	if(password.value == ""){
+		password.style.border = "1px solid red";
+        password.focus();
+        password.classList.add("error");
+        return false;
+	}
+}
+
 
 
 const upgrade = document.querySelectorAll('.Upgrade');
