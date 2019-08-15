@@ -1,8 +1,6 @@
-//selecting all text elements
-
 
 const validate =()=>{
-	
+	//selecting all text elements
 const fName= document.forms['signup']['fName'];
 const lName= document.forms['signup']['lName'];
 const address= document.forms['signup']['address'];
@@ -12,7 +10,6 @@ const occupation= document.forms['signup']['occupation'];
 const expertise= document.forms['signup']['expertise'];
 const password= document.forms['signup']['password'];
 const password_confirm= document.forms['signup']['password2'];
-
 	//validate first name
 	if(fName.value == ""){
 		fName.style.border = "1px solid red";
@@ -75,11 +72,11 @@ const password_confirm= document.forms['signup']['password2'];
 		password_confirm.style.border = "1px solid red";
         password_confirm.focus();
         password_confirm.classList.add("error");
-   		alert( "Passwords do not match!" );
+        pass_confirm_div.style.color = "white";
+        pass_confirm_div.innerHTML= "Passwords do not match!";
         return false;
 	}
 	
-
 }
 
 const validateLogin =()=>{
@@ -99,4 +96,20 @@ const validateLogin =()=>{
 	}
 }
 
+
+
+const upgrade = document.querySelectorAll('.Upgrade');
+for(let i=0; i<upgrade.length; i++){
+	upgrade[i].addEventListener('click', ()=>{
+		upgrade[i].innerHTML = "mentor";
+		upgrade[i].style.backgroundColor= "green";
+});
+
+}
+
+const bookSession = document.querySelector('.bookSession');
+bookSession.addEventListener('click', ()=>{
+	bookSession.innerHTML = "Session Booked";
+	bookSession.style.backgroundColor = "green";
+});
 
