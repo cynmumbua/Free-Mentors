@@ -3,10 +3,6 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.get('/api/v1/auth/signup', (request, response)=>{
-
-	response.send('This is my first app');
-});
 
 app.post('/api/v1/auth/signup', (request, response)=>{
 
@@ -62,5 +58,7 @@ app.delete('/api/v1/sessions/:sessionId/review', (request, response)=>{
 
 	response.send('This is my first app');
 });
+
 app.listen(port, ()=> console.log(`Listening on port ${port}`));
 
+module.exports= app;
