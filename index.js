@@ -2,62 +2,20 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
+const auth = require('./routes/auth');
+const mentors = require('./routes/mentors');
+const sessions =require('./routes/sessions');
+const admin = require('./routes/admin');
+
+app.use('/api/v1/auth', auth);
+
+app.patch('/api/v1/user/:userId',admin );
+
+app.use('/api/v1/mentors', mentors);
+
+app.use('/api/v1/sessions', sessions);
 
 
-app.post('/api/v1/auth/signup', (request, response)=>{
-
-	response.send('This is my first app');
-});
-
-app.post('/api/v1/auth/signin', (request, response)=>{
-
-	response.send('This is my first app');
-});
-
-app.patch('/api/v1/user/:userId', (request, response)=>{
-
-	response.send('This is my first app');
-});
-
-app.get('/api/v1/mentors', (request, response)=>{
-
-	response.send('This is my first app');
-});
-
-app.get('/api/v1/mentors/:mentorId', (request, response)=>{
-
-	response.send('This is my first app');
-});
-
-app.post('/api/v1/sessions', (request, response)=>{
-
-	response.send('This is my first app');
-});
-
-app.get('/api/v1/sessions', (request, response)=>{
-
-	response.send('This is my first app');
-});
-
-app.patch('/api/v1/sessions/:sessionId/accept', (request, response)=>{
-
-	response.send('This is my first app');
-});
-
-app.patch('/api/v1/sessions/:sessionId/reject', (request, response)=>{
-
-	response.send('This is my first app');
-});
-
-app.post('/api/v1/sessions/:sessionId/review', (request, response)=>{
-
-	response.send('This is my first app');
-});
-
-app.delete('/api/v1/sessions/:sessionId/review', (request, response)=>{
-
-	response.send('This is my first app');
-});
 
 app.listen(port, ()=> console.log(`Listening on port ${port}`));
 
