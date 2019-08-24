@@ -22,7 +22,7 @@ describe('test user registration', ()=>{
 			expertise: 'rocks'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -44,7 +44,7 @@ describe('test user registration', ()=>{
 			expertise: 'rocks'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -66,7 +66,7 @@ describe('test user registration', ()=>{
 			expertise: 'rocks'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -82,13 +82,13 @@ describe('test user registration', ()=>{
 			lastName: 'muinde',
 			email: 'some@yahoo.com',
 			password: '12345',
-			address: 'juja',
+			address: 'ju',
 			bio: 'Christ follower',
 			occupation: 'geologist',
 			expertise: 'rocks'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -110,7 +110,7 @@ describe('test user registration', ()=>{
 			expertise: 'rocks'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -132,7 +132,7 @@ describe('test user registration', ()=>{
 			expertise: 'rocks'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -154,7 +154,7 @@ describe('test user registration', ()=>{
 			expertise: 'rocks'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -176,7 +176,7 @@ describe('test user registration', ()=>{
 			expertise: '74!1'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -195,7 +195,7 @@ describe('test user login', ()=>{
 			password: '123!q'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -211,7 +211,7 @@ describe('test user login', ()=>{
 			password: '12345'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -224,10 +224,38 @@ describe('test user login', ()=>{
 // view all mentors test
 describe('test view mentors routes', ()=>{
 	it('should list all mentors', (done)=>{
-		chai.request(app).post('/api/v1/mentors')
-		.set('token': '').end((error,response)=>{
+		chai.request(app).get('/api/v1/mentors')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
+		.end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(400,response.statusCode);
+			assert.equal(200,response.statusCode);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
+
+	it('should list one mentors', (done)=>{
+		chai.request(app).get('/api/v1/mentors/1')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(200,response.statusCode);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
+	it('should not list unavailable mentor', (done)=>{
+		chai.request(app).get('/api/v1/mentors/140')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(404,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
@@ -236,3 +264,4 @@ describe('test view mentors routes', ()=>{
 		});
 	});
 });
+

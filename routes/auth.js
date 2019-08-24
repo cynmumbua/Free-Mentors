@@ -91,11 +91,11 @@ router.post('/signin', (request, response)=>{
 // Joi function to validate registration
 const validateSignup =(formData)=> {
 	schema = {
-		firstName: Joi.string().required(),
-		lastName: Joi.string().required(),
+		firstName: Joi.string().required().min(3),
+		lastName: Joi.string().required().min(3),
 		email: Joi.string().required().email(),
-		password: Joi.string().required(),
-		address: Joi.string().required(),
+		password: Joi.string().required().min(6),
+		address: Joi.string().required().min(3),
 		bio: Joi.string().required(),
 		occupation: Joi.string().required(),
 		expertise: Joi.string().required()
