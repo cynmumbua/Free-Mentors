@@ -1,5 +1,5 @@
 language: node_js
 node_js:
   - 10.16
-before_script:
-  -install:travis_wait 15 mvn install
+# before_script:
+#   -install:travis_wait 15 mvn install
