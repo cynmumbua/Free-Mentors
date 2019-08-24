@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const Middleware = require('../middleware/middleware');
+const mentorsInfo=require('../models/mentorsInfo');
 
-router.get('/', (request, response)=>{
+router.get('/',Middleware.checkUserToken, (request, response)=>{
 
-	response.send([1, 2, 3]);
-});
-
-router.get('/:mentorId', (request, response)=>{
-
-	response.send(request.params.mentorId);
+	response.status(200).json({
+		status: 200,
+		data:mentorsInfo
+	});
 });
 
 

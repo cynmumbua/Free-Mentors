@@ -1,5 +1,4 @@
-//declare an empty array
-const usersInfo = [{
+const mentorsInfo =[{
 	userId: 1,
 	firstName:"cynthia",
 	lastName:"jggf",
@@ -9,8 +8,7 @@ const usersInfo = [{
 	bio:"loves pets",
 	occupation:"vet",
 	expertise:"animals",
-	mentor: false
+	mentor: true
 }];
 
-//exports the array
-module.exports= usersInfo;
+module.exports=mentorsInfo;
