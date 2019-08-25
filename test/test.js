@@ -237,12 +237,12 @@ describe('test view mentors routes', ()=>{
 		});
 	});
 
-	it('should list one mentors', (done)=>{
-		chai.request(app).get('/api/v1/mentors/1')
+	it('should list one mentor', (done)=>{
+		chai.request(app).get('/api/v1/mentors/2')
 		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
 		.end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(200,response.statusCode);
+			assert.equal(response.statusCode,200);
 			if (error){
 				console.log(error);
 				done();
@@ -271,7 +271,7 @@ describe('test session routes', (done)=>{
 		chai.request(app).post('/api/v1/sessions')
 		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
 		.send({
-			mentorId:1,
+			mentorId:2,
 			questions: 'how are you?'
 		})
 		.end((error,response)=>{
@@ -286,7 +286,7 @@ describe('test session routes', (done)=>{
 	});
 	it('should not allow empty question', (done)=>{
 		chai.request(app).post('/api/v1/sessions')
-		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImlhdCI6MTU2Njc1MDY1MX0.tR7d7qDFiUHb3v5K56rMRZiBdzoJF48JsN1rupHBGLA')
 		.send({
 			mentorId:1,
 			questions: ''
@@ -303,7 +303,7 @@ describe('test session routes', (done)=>{
 	});
 	it('should not allow less than 6 characters', (done)=>{
 		chai.request(app).post('/api/v1/sessions')
-		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImlhdCI6MTU2Njc1MDY1MX0.tR7d7qDFiUHb3v5K56rMRZiBdzoJF48JsN1rupHBGLA')
 		.send({
 			mentorId:1,
 			questions: 'howar'
@@ -311,6 +311,19 @@ describe('test session routes', (done)=>{
 		.end((error,response)=>{
 			expect(response).to.be.an('object');
 			assert.equal(409,response.statusCode);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
+	it('it should return all user sessions', (done)=>{
+		chai.request(app).get('/api/v1/sessions')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImlhdCI6MTU2Njc1MDY1MX0.tR7d7qDFiUHb3v5K56rMRZiBdzoJF48JsN1rupHBGLA')
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(200,response.statusCode);
 			if (error){
 				console.log(error);
 				done();

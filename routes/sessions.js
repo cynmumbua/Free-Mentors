@@ -40,8 +40,19 @@ router.post('/', Middleware.checkUserToken, (request, response)=>{
 
 });
 
-router.get('/', (request, response)=>{
-
+router.get('/',Middleware.checkUserToken, (request, response)=>{
+	const userId =request.user.userId;
+	if(request.user.mentor == false){
+		const menteeSessions = sessions.filter(sessions=>sessions.menteeId == userId);
+		response.status(200).json({
+    	status: 200,
+    	data: menteeSessions
+	});
+	}else{
+		response.status(409).json({
+			message: 'Unauthorised access'
+		});
+	}
 	
 });
 
