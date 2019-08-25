@@ -22,7 +22,7 @@ describe('test user registration', ()=>{
 			expertise: 'rocks'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(409,response.statusCode);
+			assert.equal(response.statusCode, 409);
 			if (error){
 				console.log(error);
 				done();
@@ -44,7 +44,7 @@ describe('test user registration', ()=>{
 			expertise: 'rocks'
 		}).end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(409,response.statusCode);
+			assert.equal(response.statusCode, 409);
 			if (error){
 				console.log(error);
 				done();
@@ -228,7 +228,7 @@ describe('test view mentors routes', ()=>{
 		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
 		.end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(200,response.statusCode);
+			assert.equal(response.statusCode,200);
 			if (error){
 				console.log(error);
 				done();
@@ -269,14 +269,14 @@ describe('test view mentors routes', ()=>{
 describe('test session routes', (done)=>{
 	it('should create a new session', (done)=>{
 		chai.request(app).post('/api/v1/sessions')
-		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImlhdCI6MTU2Njc1NjYzOH0.jpNI435zJqOg_kTcwW3OuefcApjF6CaL2or44X8h-tQ')
 		.send({
 			mentorId:2,
 			questions: 'how are you?'
 		})
 		.end((error,response)=>{
 			expect(response).to.be.an('object');
-			assert.equal(201,response.statusCode);
+			assert.equal(response.statusCode,201);
 			if (error){
 				console.log(error);
 				done();
@@ -321,6 +321,19 @@ describe('test session routes', (done)=>{
 	it('it should return all user sessions', (done)=>{
 		chai.request(app).get('/api/v1/sessions')
 		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImlhdCI6MTU2Njc1MDY1MX0.tR7d7qDFiUHb3v5K56rMRZiBdzoJF48JsN1rupHBGLA')
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(200,response.statusCode);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
+	it('it should return all mentor sessions', (done)=>{
+		chai.request(app).get('/api/v1/sessions')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiY3lubXVtYnVhQHlhaG9vLmNvbSIsIm1lbnRvciI6dHJ1ZSwiaWF0IjoxNTY2NzU1NzI4fQ.PpKb1N3qBTjWwE_njrQphTQniWPa8GB3zWL1dcCSCmg')
 		.end((error,response)=>{
 			expect(response).to.be.an('object');
 			assert.equal(200,response.statusCode);

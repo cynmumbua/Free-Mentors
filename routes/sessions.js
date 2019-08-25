@@ -15,27 +15,33 @@ router.post('/', Middleware.checkUserToken, (request, response)=>{
 	}
 
 	const checkMentor= mentorsInfo.find(mentorsInfo=>mentorsInfo.userId == request.body.mentorId);
-
-	if(checkMentor){
-		
-		const newSession ={
-			sessionId: sessions.length + 1,
-			mentorId: request.body.mentorId,
-			menteeId: request.user.userId,
-			questions: request.body.questions,
-			menteeEmail: request.user.email,
-			status: 'pending'
+	if(request.user.mentor == false){
+		if(checkMentor){
+			
+			const newSession ={
+				sessionId: sessions.length + 1,
+				mentorId: request.body.mentorId,
+				menteeId: request.user.userId,
+				questions: request.body.questions,
+				menteeEmail: request.user.email,
+				status: 'pending'
+			}
+	    sessions.push(newSession);
+	    response.status(201).json({
+	    	status: 201,
+	    	data: newSession
+	    });
+		}else{
+			 response.status(404).json({
+	    	 status: 404,
+	    	 message: 'No mentor with that Id'
+	    });
 		}
-    sessions.push(newSession);
-    response.status(201).json({
-    	status: 201,
-    	data: newSession
-    });
 	}else{
-		 response.status(404).json({
-    	 status: 404,
-    	 message: 'No mentor with that Id'
-    });
+			 response.status(409).json({
+	    	 status: 409,
+	    	 message: 'Mentor cannot create sessions'
+	    });
 	}
 
 });
@@ -48,7 +54,15 @@ router.get('/',Middleware.checkUserToken, (request, response)=>{
     	status: 200,
     	data: menteeSessions
 	});
-	}else{
+	}else if(request.user.mentor == true){
+		const mentorSessions = sessions.filter(sessions=>sessions.mentorId == userId);
+		response.status(200).json({
+    	status: 200,
+    	data: mentorSessions
+	});
+
+	}
+	else{
 		response.status(409).json({
 			message: 'Unauthorised access'
 		});
