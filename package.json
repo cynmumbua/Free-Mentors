@@ -4,7 +4,8 @@
   "description": "Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coveralls": "npm test && report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
