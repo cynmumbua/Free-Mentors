@@ -318,7 +318,7 @@ describe('test session routes', (done)=>{
 			done();
 		});
 	});
-	it('it should return all user sessions', (done)=>{
+	it('should return all user sessions', (done)=>{
 		chai.request(app).get('/api/v1/sessions')
 		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImlhdCI6MTU2Njc1MDY1MX0.tR7d7qDFiUHb3v5K56rMRZiBdzoJF48JsN1rupHBGLA')
 		.end((error,response)=>{
@@ -331,7 +331,7 @@ describe('test session routes', (done)=>{
 			done();
 		});
 	});
-	it('it should return all mentor sessions', (done)=>{
+	it('should return all mentor sessions', (done)=>{
 		chai.request(app).get('/api/v1/sessions')
 		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiY3lubXVtYnVhQHlhaG9vLmNvbSIsIm1lbnRvciI6dHJ1ZSwiaWF0IjoxNTY2NzU1NzI4fQ.PpKb1N3qBTjWwE_njrQphTQniWPa8GB3zWL1dcCSCmg')
 		.end((error,response)=>{
@@ -344,7 +344,7 @@ describe('test session routes', (done)=>{
 			done();
 		});
 	});
-	it('it should accept a session requested', (done)=>{
+	it('should accept a session requested', (done)=>{
 		chai.request(app).patch('/api/v1/sessions/1/accept')
 		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiY3lubXVtYnVhQHlhaG9vLmNvbSIsIm1lbnRvciI6dHJ1ZSwiaWF0IjoxNTY2NzU5NDE0fQ.toDKOoMyFbAjukKkwNf9-1Zn-44LhrPwJfVfvQ5svdM')
 		.end((error,response)=>{
@@ -357,9 +357,22 @@ describe('test session routes', (done)=>{
 			done();
 		});
 	});
-	it('it should reject a session requested', (done)=>{
+	it('should reject a session requested', (done)=>{
 		chai.request(app).patch('/api/v1/sessions/1/reject')
 		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiY3lubXVtYnVhQHlhaG9vLmNvbSIsIm1lbnRvciI6dHJ1ZSwiaWF0IjoxNTY2NzU5NDE0fQ.toDKOoMyFbAjukKkwNf9-1Zn-44LhrPwJfVfvQ5svdM')
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(response.statusCode, 200);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
+	it('should upgrade user to mentor', (done)=>{
+		chai.request(app).patch('/api/v1/user/1')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoiY3lubXVtYnVhQGdpdGh1Yi5jb20iLCJtZW50b3IiOiJhZG1pbiIsImlhdCI6MTU2Njc2MzI0MH0.3tX6eeo3NPhSOeNZPc9tpO2eGQ2zxqz0C_21FTNWWqk')
 		.end((error,response)=>{
 			expect(response).to.be.an('object');
 			assert.equal(response.statusCode, 200);
