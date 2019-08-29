@@ -35,6 +35,7 @@ if(!checkEmail){
 				data: {
 					token: token,
 					message: 'user created succesfully',
+					userId:user.userId,
 					firstName: user.firstName,
 					email:user.email,
 					password:user.password

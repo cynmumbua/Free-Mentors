@@ -15,39 +15,81 @@ router.post('/', Middleware.checkUserToken, (request, response)=>{
 	}
 
 	const checkMentor= mentorsInfo.find(mentorsInfo=>mentorsInfo.userId == request.body.mentorId);
-
-	if(checkMentor){
-		
-		const newSession ={
-			sessionId: sessions.length + 1,
-			mentorId: request.body.mentorId,
-			menteeId: request.user.userId,
-			questions: request.body.questions,
-			menteeEmail: request.user.email,
-			status: 'pending'
+	if(request.user.mentor == false){
+		if(checkMentor){
+			
+			const newSession ={
+				sessionId: sessions.length + 1,
+				mentorId: request.body.mentorId,
+				menteeId: request.user.userId,
+				questions: request.body.questions,
+				menteeEmail: request.user.email,
+				status: 'pending'
+			}
+	    sessions.push(newSession);
+	    response.status(201).json({
+	    	status: 201,
+	    	data: newSession
+	    });
+		}else{
+			 response.status(404).json({
+	    	 status: 404,
+	    	 message: 'No mentor with that Id'
+	    });
 		}
-    sessions.push(newSession);
-    response.status(201).json({
-    	status: 201,
-    	data: newSession
-    });
 	}else{
-		 response.status(404).json({
-    	 status: 404,
-    	 message: 'No mentor with that Id'
-    });
+			 response.status(409).json({
+	    	 status: 409,
+	    	 message: 'Mentor cannot create sessions'
+	    });
 	}
 
 });
 
-router.get('/', (request, response)=>{
+router.get('/',Middleware.checkUserToken, (request, response)=>{
+	const userId =request.user.userId;
+	if(request.user.mentor == false){
+		const menteeSessions = sessions.filter(sessions=>sessions.menteeId == userId);
+		response.status(200).json({
+    	status: 200,
+    	data: menteeSessions
+	});
+	}else if(request.user.mentor == true){
+		const mentorSessions = sessions.filter(sessions=>sessions.mentorId == userId);
+		response.status(200).json({
+    	status: 200,
+    	data: mentorSessions
+	});
 
+	}
+	else{
+		response.status(401).json({
+			message: 'Unauthorised access'
+		});
+	}
 	
 });
 
-router.patch('/:sessionId/accept', (request, response)=>{
-
-	response.send('This is my first app');
+router.patch('/:sessionId/accept',Middleware.checkUserToken, (request, response)=>{
+	const userId =request.user.userId;
+	if(request.user.mentor == true){
+			const acceptSession = sessions.find(sessions=>sessions.sessionId == request.params.sessionId);
+			if(acceptSession){
+				acceptSession.status = 'accepted';
+				response.status(200).json({
+		    	status: 200,
+		    	data: acceptSession
+			});	
+			}else{
+				response.status(404).json({
+					message: 'session not found'
+				});
+			}	
+	}else{
+		response.status(401).json({
+		message: 'Unauthorised access'
+	});
+	}
 });
 
 router.patch('/:sessionId/reject', (request, response)=>{
