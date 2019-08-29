@@ -22,7 +22,8 @@ if(!checkEmail){
 			address: request.body.address,
 			bio: request.body.bio,
 			occupation: request.body.occupation,
-			expertise: request.body.expertise
+			expertise: request.body.expertise,
+			mentor: false
 			}
 			usersInfo.push(user);
 	// generate validation token
@@ -65,7 +66,7 @@ router.post('/signin', (request, response)=>{
 	if(checkUser){
 		const passwordCheck = bcrypt.compareSync(request.body.password, checkUser.password);
 		if(passwordCheck){
-			const token= jwt.sign({email: request.body.email}, 'key');
+			const token= jwt.sign({userId: checkUser.userId, email: checkUser.email, mentor: checkUser.mentor}, 'key');
 			response.status(200).json({
 				status: 200,
 				message: 'User is succesfully logged in',

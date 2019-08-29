@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - 10
-install: npm ci
+  - 10.16
+install: npm install
 script:
   -npm test
 cache:
