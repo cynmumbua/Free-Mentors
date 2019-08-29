@@ -6,6 +6,7 @@ const auth = require('./routes/auth');
 const mentors = require('./routes/mentors');
 const sessions =require('./routes/sessions');
 const admin = require('./routes/admin');
+app.use(express.json());
 
 app.use('/api/v1/auth', auth);
 
