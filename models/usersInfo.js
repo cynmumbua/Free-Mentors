@@ -23,6 +23,18 @@ const usersInfo = [
 	occupation:"vet",
 	expertise:"animals",
 	mentor: true
+},
+{
+	userId: 3,
+	firstName:"cynthia",
+	lastName:"jggf",
+	email:"cynmumbua@github.com",
+	password:"$2b$06$43ZB8GGM8xnhgawPQsf4G.yw0CxA3GONlKK8jrUr9ILz4kznoAw8.",
+	address:"juja",
+	bio:"loves pets",
+	occupation:"vet",
+	expertise:"animals",
+	mentor: 'admin',
 }
 
 ];

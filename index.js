@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use('/api/v1/auth', auth);
 
-app.patch('/api/v1/user/:userId', admin);
+app.use('/api/v1/user', admin);
 
 app.use('/api/v1/mentors', mentors);
 
