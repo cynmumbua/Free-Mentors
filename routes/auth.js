@@ -22,7 +22,8 @@ if(!checkEmail){
 			address: request.body.address,
 			bio: request.body.bio,
 			occupation: request.body.occupation,
-			expertise: request.body.expertise
+			expertise: request.body.expertise,
+			mentor: false
 			}
 			usersInfo.push(user);
 	// generate validation token
@@ -52,10 +53,42 @@ if(!checkEmail){
 });
 
 router.post('/signin', (request, response)=>{
+	const{error}= validateSignin(request.body);
 
-	response.send('This is my first app');
+	if (error){
+		return response.status(409).json({
+			message: error.details[0].message
+		});
+	}
+	const checkUser= usersInfo.find(usersInfo=>usersInfo.email=== request.body.email);
+
+	if(checkUser){
+		const passwordCheck = bcrypt.compareSync(request.body.password, checkUser.password);
+		if(passwordCheck){
+			const token= jwt.sign({userId: checkUser.userId, email: checkUser.email, mentor: checkUser.mentor}, 'key');
+			response.status(200).json({
+				status: 200,
+				message: 'User is succesfully logged in',
+				data:{
+					token:token,
+					email: request.body.email
+				}
+				
+
+			});
+		}else{
+			return response.status(409).json({
+				message: 'Password do not match'
+			});
+		}
+	}else{
+		return response.status(409).json({
+			message: 'User not found'
+		});
+	}
+
 });
-
+// Joi function to validate registration
 const validateSignup =(formData)=> {
 	schema = {
 		firstName: Joi.string().required(),
@@ -66,6 +99,14 @@ const validateSignup =(formData)=> {
 		bio: Joi.string().required(),
 		occupation: Joi.string().required(),
 		expertise: Joi.string().required()
+	}
+	return Joi.validate(formData, schema);
+}
+// Joi function to validate signin
+const validateSignin =(formData)=> {
+	schema = {
+		email: Joi.string().required().email(),
+		password: Joi.string().required()
 	}
 	return Joi.validate(formData, schema);
 }
