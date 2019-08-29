@@ -357,6 +357,19 @@ describe('test session routes', (done)=>{
 			done();
 		});
 	});
+	it('it should reject a session requested', (done)=>{
+		chai.request(app).patch('/api/v1/sessions/1/reject')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiY3lubXVtYnVhQHlhaG9vLmNvbSIsIm1lbnRvciI6dHJ1ZSwiaWF0IjoxNTY2NzU5NDE0fQ.toDKOoMyFbAjukKkwNf9-1Zn-44LhrPwJfVfvQ5svdM')
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(response.statusCode, 200);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
 
 });
 

@@ -92,9 +92,26 @@ router.patch('/:sessionId/accept',Middleware.checkUserToken, (request, response)
 	}
 });
 
-router.patch('/:sessionId/reject', (request, response)=>{
-
-	response.send('This is my first app');
+router.patch('/:sessionId/reject',Middleware.checkUserToken, (request, response)=>{
+	const userId =request.user.userId;
+	if(request.user.mentor == true){
+			const rejectSession = sessions.find(sessions=>sessions.sessionId == request.params.sessionId);
+			if(rejectSession){
+				rejectSession.status = 'rejected';
+				response.status(200).json({
+		    	status: 200,
+		    	data: rejectSession
+			});	
+			}else{
+				response.status(404).json({
+					message: 'session not found'
+				});
+			}	
+	}else{
+		response.status(401).json({
+		message: 'Unauthorised access'
+	});
+	}
 });
 
 router.post('/:sessionId/review', (request, response)=>{
