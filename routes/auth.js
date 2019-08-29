@@ -52,6 +52,7 @@ if(!checkEmail){
 	}
 });
 
+// signin
 router.post('/signin', (request, response)=>{
 	const{error}= validateSignin(request.body);
 

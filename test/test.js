@@ -7,6 +7,7 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 const assert = chai.assert;
 
+// resgistration test
 describe('test user registration', ()=>{
 	it('should allow valid fname', (done)=>{
 		chai.request(app).post('/api/v1/auth/signup')
@@ -185,7 +186,7 @@ describe('test user registration', ()=>{
 	});
 });
 
-
+// signin test
 describe('test user login', ()=>{
 	it('should allow valid username', (done)=>{
 		chai.request(app).post('/api/v1/auth/signin')
@@ -218,4 +219,20 @@ describe('test user login', ()=>{
 			done();
 		});
 	});
-})
+});
+
+// view all mentors test
+describe('test view mentors routes', ()=>{
+	it('should list all mentors', (done)=>{
+		chai.request(app).post('/api/v1/mentors')
+		.set('token': '').end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(400,response.statusCode);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
+});
