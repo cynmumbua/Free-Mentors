@@ -152,9 +152,29 @@ router.post('/:sessionId/review', Middleware.checkUserToken, (request, response)
 
 });
 
-router.delete('/:sessionId/delete', (request, response)=>{
+router.delete('/:sessionId/delete', Middleware.checkUserToken, (request, response)=>{
+	if(request.user.mentor == 'admin'){
+		const deleteReview = reviews.find(reviews=>reviews.sessionId == request.params.sessionId);
+		if(deleteReview){
+			reviews.splice(reviews.indexOf(deleteReview), 1);
+			response.status(200).json({
+			status: 200,
+			message: 'Review successfully deleted'
+			});
+		}else{
+			response.status(404).json({
+				message: 'review with that id not found'
+			});
+		}
 
-	response.send('This is my first app');
+	}
+	else{
+		response.status(401).json({
+			message: 'Unauthorised access'
+		});
+	}
+	
+	
 });
 
 const validateQuestion =(formData)=> {

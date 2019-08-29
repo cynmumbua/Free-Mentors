@@ -400,6 +400,18 @@ describe('test session routes', (done)=>{
 	// 		done();
 	// 	});
 	// });
-
+	it('should delete review', (done)=>{
+		chai.request(app).delete('/api/v1/sessions/1/delete')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoiY3lubXVtYnVhQGdpdGh1Yi5jb20iLCJtZW50b3IiOiJhZG1pbiIsImZpcnN0TmFtZSI6ImN5bnRoaWEiLCJsYXN0TmFtZSI6ImpnZ2YiLCJpYXQiOjE1NjcxMTE0MzN9.cvFn2_iDBc4LUE_dUXxITwp6jwmWhJ5W56INHRkZtro')
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(response.statusCode, 200);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
 });
 
