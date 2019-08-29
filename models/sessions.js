@@ -5,7 +5,7 @@ const sessions= [
     menteeId: 1,
     questions: "hello world",
     menteeEmail: "cynmumbua@gmail.com",
-    status: "pending"
+    status: "accepted"
 }
 ];
 

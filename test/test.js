@@ -383,6 +383,23 @@ describe('test session routes', (done)=>{
 			done();
 		});
 	});
+	// it('should create a session review', (done)=>{
+	// 	chai.request(app).post('/api/v1/sessions/1/review')
+	// 	.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImZpcnN0TmFtZSI6ImN5bnRoaWEiLCJsYXN0TmFtZSI6ImpnZ2YiLCJpYXQiOjE1NjcxMDk3Njd9.V2H5H4zud8ChTxWXa3sxc3-oIvC141FCkRESxrohL_I')
+	// 	.send({
+	// 		score: 5,
+	// 		remark: 'God'
+	// 	})
+	// 	.end((error,response)=>{
+	// 		expect(response).to.be.an('object');
+	// 		assert.equal(response.statusCode, 200);
+	// 		if (error){
+	// 			console.log(error);
+	// 			done();
+	// 		}
+	// 		done();
+	// 	});
+	// });
 
 });
 

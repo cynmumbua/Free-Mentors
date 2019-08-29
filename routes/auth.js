@@ -67,7 +67,8 @@ router.post('/signin', (request, response)=>{
 	if(checkUser){
 		const passwordCheck = bcrypt.compareSync(request.body.password, checkUser.password);
 		if(passwordCheck){
-			const token= jwt.sign({userId: checkUser.userId, email: checkUser.email, mentor: checkUser.mentor}, 'key');
+			const token= jwt.sign({userId: checkUser.userId, email: checkUser.email, mentor: checkUser.mentor, firstName: checkUser.firstName, lastName:checkUser.lastName}, 'key');
+						// const token= jwt.sign({userId: checkUser.userId, email: checkUser.email, mentor: checkUser.mentor, }, 'key');
 			response.status(200).json({
 				status: 200,
 				message: 'User is succesfully logged in',
