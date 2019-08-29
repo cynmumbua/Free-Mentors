@@ -4,6 +4,7 @@ const sessions= require('../models/sessions');
 const Middleware= require('../middleware/middleware');
 const mentorsInfo= require('../models/mentorsInfo');
 const Joi= require('joi');
+const reviews = require('../models/reviews');
 
 
 router.post('/', Middleware.checkUserToken, (request, response)=>{
@@ -114,9 +115,41 @@ router.patch('/:sessionId/reject',Middleware.checkUserToken, (request, response)
 	}
 });
 
-router.post('/:sessionId/review', (request, response)=>{
+router.post('/:sessionId/review', Middleware.checkUserToken, (request, response)=>{
+	const requestedSession = sessions.find(sessions=>sessions.sessionId == request.params.sessionId);
+	if(requestedSession){
+		if(requestedSession.menteeId == request.user.userId){
+			 if(requestedSession.status !== 'accepted'){
+			 	return response.status(403).json({
+			 		message: 'session has not been accepted'
+			 	});
+			 }
 
-	response.send('This is my first app');
+			const review = {
+				sessionId: requestedSession.sessionId,
+				mentorId: requestedSession.mentorId,
+				menteeId: requestedSession.menteeId,
+				score: request.body.score,
+				menteeFullName: `${request.user.firstName} ${request.user.lastName}`,
+				remark: request.body.remark
+			};
+			reviews.push(review);
+			response.status(200).json({
+				status:200,
+				data: review
+			});
+		}else{
+			response.status(409).json({
+				message: 'confirm your session Id'
+			});
+			
+		}
+	}else{
+		response.status(404).json({
+				message: 'session with that id not found'
+			});
+	}
+
 });
 
 router.delete('/:sessionId/delete', (request, response)=>{
