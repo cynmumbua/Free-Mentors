@@ -6,6 +6,7 @@ class Middleware{
 		if(userToken){
 			try{
 				const user=jwt.verify(userToken, 'key');
+				request.user = user;
 				next();
 			}catch(error){
 				return response.status(409).json({

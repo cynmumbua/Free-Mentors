@@ -221,7 +221,7 @@ describe('test user login', ()=>{
 	});
 });
 
-// view all mentors test
+// view  mentors test
 describe('test view mentors routes', ()=>{
 	it('should list all mentors', (done)=>{
 		chai.request(app).get('/api/v1/mentors')
@@ -256,6 +256,61 @@ describe('test view mentors routes', ()=>{
 		.end((error,response)=>{
 			expect(response).to.be.an('object');
 			assert.equal(404,response.statusCode);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
+});
+
+// session test
+describe('test session routes', (done)=>{
+	it('should create a new session', (done)=>{
+		chai.request(app).post('/api/v1/sessions')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
+		.send({
+			mentorId:1,
+			questions: 'how are you?'
+		})
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(201,response.statusCode);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
+	it('should not allow empty question', (done)=>{
+		chai.request(app).post('/api/v1/sessions')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
+		.send({
+			mentorId:1,
+			questions: ''
+		})
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(409,response.statusCode);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
+	it('should not allow less than 6 characters', (done)=>{
+		chai.request(app).post('/api/v1/sessions')
+		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M')
+		.send({
+			mentorId:1,
+			questions: 'howar'
+		})
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(409,response.statusCode);
 			if (error){
 				console.log(error);
 				done();
