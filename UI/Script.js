@@ -1,4 +1,3 @@
-
 const validate =()=>{
 	//selecting all text elements
 const fName= document.forms['signup']['fName'];
@@ -109,7 +108,7 @@ for(let i=0; i<upgrade.length; i++){
 
 const accept =document.querySelectorAll('.accept');
 const decline= document.querySelectorAll('.decline');
-for(let i=0; i<accept.length; i++){
+	for(let i=0; i<accept.length; i++){
 	accept[i].addEventListener('click', ()=>{
     	accept[i].innerHTML = 'Session accepted';
     	decline[i].style.display= 'none';
@@ -126,10 +125,16 @@ for(let i=0; i<decline.length; i++){
 });
 
 }
+const buttonMore = document.querySelectorAll('.more');
+	for(let i=0; i<buttonMore.length; i++){
+	buttonMore[i].addEventListener('click', ()=> {
+        location.href = "ViewMentor.html";
+    });
+}
 
 
 const bookSession = document.querySelector('.bookSession');
-bookSession.addEventListener('click', ()=>{
+	bookSession.addEventListener('click', ()=>{
 	bookSession.innerHTML = "Session Booked";
 	bookSession.style.backgroundColor = "green";
 });

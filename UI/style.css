@@ -1,25 +1,30 @@
 body{
     margin: 0;
     padding: 0;
-    background: url("pictures/back.jpg");
+/*    background: url("pictures/bg.jpeg");*/
+    background-color: #ecfeea;
     background-size: cover;
-    /*background-position: center;*/
+    background-position: center;
     font-family: sans-serif;
+}
+.center{
+    text-align: center;
 }
 
 .login{
     width: 420px;
     height: auto;
-    background:#003380;
+    background:#459A73;
     color: #fff;
     top: 50%;
-    left: 52%;
+    left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
     padding: 5px 30px;
     border-radius: 40px;
     margin-top: 15px;
+    display: inline-block;
 }
 
 h1{
@@ -27,6 +32,11 @@ h1{
     padding: 0 0 20px;
     text-align: center;
     font-size: 22px;
+}
+h2{
+    padding: 1rem;
+    color: #000;
+    text-align: center;
 }
 
 .login p{
@@ -59,7 +69,7 @@ h1{
     border: none;
     outline: none;
     height: 40px;
-    background:#ff0066;
+    background:#1C6E62;
     color: #fff;
     font-size: 18px;
     border-radius: 20px;
@@ -84,15 +94,23 @@ h1{
 }
 .parent {
   /*background:#66b3ff;*/
-  padding: 1rem
+  padding: 1rem;
+  text-align: center;
 }
 .mentor{
     width:200px; 
     height:200px;
     display: inline-block;
-    border: 1px solid indigo;
+    border: 1px solid #00994d;
     padding: 1rem;
-    background-color:#003380;
+    background-color:#459A73;
+}
+.more{
+    border-radius: 10px;
+    background-color: #00994d;
+    width: 100px;
+    color: #fff;
+    font-size: 14px;
 }
 .mentor img{
     padding: 0 30px 0 30px;
@@ -105,7 +123,9 @@ h1{
     width: 100px;
     height:100px;
     border-radius: 50%;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 .view img{
     padding: 0 30px 0 30px;
@@ -113,14 +133,15 @@ h1{
 .view{
     width: 500px;
     height: auto;
-    border: 1px solid indigo;
+    border: 1px solid #00994d;
     /*top: 50%;
     left: 50%;*/
     margin: 30px auto 30px auto;
     /*margin-top: -50px;
     margin-left: -50px;*/
-    background-color:#003380; 
+    background-color:#459A73; 
     padding: 5px;
+    border-radius: 30px;
 
 }
 .review{
@@ -130,29 +151,36 @@ h1{
 .view input[type='submit']{
     height: 20px;
     width: 100px;
-    background-color: #ff0066;
+    background-color: #00994d;
     border-radius: 10px;
     color: #fff;
     margin-top: 5px;
 }
+.view textarea {
+    position: relative; 
+    margin-bottom: 10px;
+    width:100%;
+    height: 10%;
+}
 .Dashboard{
     width: auto;
     height: 70px;
-    background-color:#003380;  
+    background-color:#459A73;  
     color: #fff;
     font-size: 30px;
     display: flex;
+    padding: 1rem;
 }
 .book_session button{
-/*    float: right;
-*/    background-color: #ff0066;
+/*  float: right;*/ 
+    background-color: #00994d;
     border-radius: 10px;
     height: 40px;
     color: #fff;
 }
 .Dashboard .logOut{
     float: right;
-    background-color: #ff0066;
+    background-color: #800b71;
     border-radius: 10px;
     height: 50px;
     margin-top: 10px;
@@ -168,7 +196,7 @@ h1{
 }
 .Dashboard .back{
     float: left;
-    background-color: #ff0066;
+    background-color: #800b71;
     border-radius: 10px;
     height: 50px;
     margin-top: 10px;
@@ -177,8 +205,12 @@ h1{
     color: #fff;
     font-size: 18px;
 }
-p, h4 {
+p {
     color: #fff;
+    }
+h4 {
+    color: #fff;
+    text-align: center;
 }
 .mentor .upgrade{
 /*    margin-top: 5px;
@@ -186,9 +218,9 @@ p, h4 {
     width:100px; 
 /*    margin: -20px -50px; 
 */  position:relative; 
-    left:50%;
-    background-color: #ff0066;
+    background-color: #BF360C;
     border-radius: 20px;
+    margin-bottom: 10px;
     border: none;
     color: #fff;
 }
@@ -199,9 +231,18 @@ p, h4 {
     color: #fff;
 }
 .mentor .decline{
-    background-color: #ff0066;
+    background-color: #BF360C;
     border-radius: 20px;
     border: none;
     color: #fff;
     margin-left: 85px;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #459A73;
+   color: #fff;
+   text-align: center;
 }
