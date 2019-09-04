@@ -3,7 +3,7 @@ Free Mentors is a social initiative where accomplished professionals become role
 
 [![Build Status](https://travis-ci.org/cynmumbua/Free-Mentors.svg?branch=ft-update-to-mentor-168000713)](https://travis-ci.org/cynmumbua/Free-Mentors)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b204eca8eace469092db/maintainability)](https://codeclimate.com/github/cynmumbua/Free-Mentors/maintainability)
-[![Coverage Status](https://coveralls.io/repos/github/cynmumbua/Free-Mentors/badge.svg?branch=ch-intergrate-coveralls-168284956)](https://coveralls.io/github/cynmumbua/Free-Mentors?branch=ch-intergrate-coveralls-168284956)
+[![Coverage Status](https://coveralls.io/repos/github/cynmumbua/Free-Mentors/badge.svg?branch=develop)](https://coveralls.io/github/cynmumbua/Free-Mentors?branch=develop)
 <b>Built with</b>
 - [Node.js](https://nodejs.org)
 ---
