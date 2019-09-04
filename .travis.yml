@@ -1,6 +1,6 @@
 --- 
 after_success: 
-  - "npm run coveralls"
+  - "npm run coverage"
 cache: 
   directories: 
     - node_modules
