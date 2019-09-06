@@ -10,10 +10,6 @@ import usersInfo from '../models/usersInfo';
 				message: 'user created succesfully',
 				data: {
 					token: request.token,
-					message: 'user created succesfully',
-					userId: request.user.userId,
-					firstName: request.user.firstName,
-					email:request.user.email,
 				}
 			});
 		}
