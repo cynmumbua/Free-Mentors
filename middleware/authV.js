@@ -40,9 +40,7 @@ class Validations{
 		}
 		next();
 	}
-	// static token(request,response,next){
-	// 	const token = jwt.sign({email: user.email}, 'key');
-	// }
+
 }
 
 export default Validations;
