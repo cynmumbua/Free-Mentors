@@ -1,29 +1,13 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const Middleware = require('../middleware/middleware');
-const mentorsInfo=require('../models/mentorsInfo');
+import Middleware from '../middleware/middleware';
+// import mentorsInfo from '../models/mentorsInfo';
+import mentors from '../controllers/mentors';
+import mentorsM from '../middleware/mentors';
 
-router.get('/',Middleware.checkUserToken, (request, response)=>{
+router.get('/',Middleware.checkUserToken, mentors.allMentors);
 
-	response.status(200).json({
-		status: 200,
-		data:mentorsInfo
-	});
-});
-
-router.get('/:mentorId',Middleware.checkUserToken, (request, response)=>{
-	const checkMentor= mentorsInfo.find(mentorsInfo=>mentorsInfo.userId == request.params.mentorId);
-	if(checkMentor){
-		response.status(200).json({
-		status: 200,
-		data:checkMentor
-	});
-	}else{
-		response.status(404).json({
-			message: 'Mentor not found'
-		});
-	}
-});
+router.get('/:mentorId',Middleware.checkUserToken, mentorsM.viewMentor, mentors.oneMentor);
 
 
-module.exports= router;
+export default router;
