@@ -1,7 +1,6 @@
 import express from 'express';
 const router = express.Router();
 import Middleware from '../middleware/middleware';
-// import reviews from '../models/reviews';
 import sessions from '../controllers/sessions';
 import sessionsV from '../middleware/sessionsV';
 import sessionsC from '../middleware/sessions'

@@ -9,28 +9,30 @@ const assert = chai.assert;
 
 // resgistration test
 describe('test user registration', ()=>{
-	// it('should create a new user', (done)=>{
-	// 	chai.request(app).post('/api/v1/auth/signup')
-	// 	.send({
-	// 		firstName: 'Cynthia',
-	// 		lastName: 'muinde',
-	// 		email: 'some@yahoo.com',
-	// 		password: '123!q',
-	// 		address: 'juja',
-	// 		bio: 'Christ follower',
-	// 		occupation: 'geologist',
-	// 		expertise: 'rocks'
-	// 	})
-	// 	.end((error,response)=>{
-	// 		expect(response).to.be.an('object');
-	// 		assert.equal(response.statusCode,201);
-	// 		if (error){
-	// 			console.log(error);
-	// 			done();
-	// 		}
-	// 		done();
-	// 	});
-	// });
+
+	it('should create a new user', (done)=>{
+		chai.request(app).post('/api/v1/auth/signup')
+		.send({
+			firstName: 'Cynthia',
+			lastName: 'muinde',
+			email: 'sohgfh@hggh.com',
+			password: '123!qaaa',
+			address: 'juja',
+			bio: 'Christ follower',
+			occupation: 'geologist',
+			expertise: 'rocks'
+		}).end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(response.statusCode, 201);
+			// expect(response.body.message).equals("++++++++++++++++++++++++++++++++")
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
+
 	it('should allow valid fname', (done)=>{
 		chai.request(app).post('/api/v1/auth/signup')
 		.send({
@@ -432,37 +434,23 @@ describe('test user login', ()=>{
 			done();
 		});
 	});
-	// it('should not allow matched password', (done)=>{
-	// 	chai.request(app).post('/api/v1/auth/signin')
-	// 	.send({
-	// 		email: 'some@yahoo.com',
-	// 		password: '123!q'
-	// 	}).end((error,response)=>{
-	// 		expect(response).to.be.an('object');
-	// 		assert.equal(response.statusCode, 409);
-	// 		if (error){
-	// 			console.log(error);
-	// 			done();
-	// 		}
-	// 		done();
-	// 	});
-	// });
-	// it('should login user', (done)=>{
-	// 	chai.request(app).post('/api/v1/auth/signin')
-	// 	.send({
-	// 		email: 'some@yahoo.com',
-	// 		password: '123!q',
-	// 		})
-	// 	.end((error,response)=>{
-	// 		expect(response).to.be.an('object');
-	// 		assert.equal(response.statusCode, 200);
-	// 		if (error){
-	// 			console.log(error);
-	// 			done();
-	// 		}
-	// 		done();
-	// 	});
-	// });
+	
+	it('should login user', (done)=>{
+		chai.request(app).post('/api/v1/auth/signin')
+		.send({
+			email: 'cynmumbua@gmail.com',
+			password: 'gost12',
+			})
+		.end((error,response)=>{
+			expect(response).to.be.an('object');
+			assert.equal(response.statusCode, 200);
+			if (error){
+				console.log(error);
+				done();
+			}
+			done();
+		});
+	});
 });
 
 // view  mentors test
@@ -528,23 +516,7 @@ describe('test session routes', (done)=>{
 			done();
 		});
 	});
-	// it('should not allow mentor to create a new session', (done)=>{
-	// 	chai.request(app).post('/api/v1/sessions')
-	// 	.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiY3lubXVtYnVhQHlhaG9vLmNvbSIsIm1lbnRvciI6dHJ1ZSwiaWF0IjoxNTY2NzU1NzI4fQ.PpKb1N3qBTjWwE_njrQphTQniWPa8GB3zWL1dcCSCmg')
-	// 	.send({
-	// 		mentorId:2,
-	// 		questions: 'how are you?'
-	// 	})
-	// 	.end((error,response)=>{
-	// 		expect(response).to.be.an('object');
-	// 		assert.equal(response.statusCode,401);
-	// 		if (error){
-	// 			console.log(error);
-	// 			done();
-	// 		}
-	// 		done();
-	// 	});
-	// });
+	
 	it('should not allow empty question', (done)=>{
 		chai.request(app).post('/api/v1/sessions')
 		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImlhdCI6MTU2Njc1MDY1MX0.tR7d7qDFiUHb3v5K56rMRZiBdzoJF48JsN1rupHBGLA')
@@ -670,23 +642,7 @@ describe('test session routes', (done)=>{
 			done();
 		});
 	});
-	// it('should create a session review', (done)=>{
-	// 	chai.request(app).post('/api/v1/sessions/1/review')
-	// 	.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImlhdCI6MTU2Njc1MDY1MX0.tR7d7qDFiUHb3v5K56rMRZiBdzoJF48JsN1rupHBGLA')
-	// 	.send({
-	// 		score: 5,
-	// 		remark: 'Goood'
-	// 	})
-	// 	.end((error,response)=>{
-	// 		expect(response).to.be.an('object');
-	// 		assert.equal(response.statusCode, 200);
-	// 		if (error){
-	// 			console.log(error);
-	// 			done();
-	// 		}
-	// 		done();
-	// 	});
-	// });
+	
 	it('should not be less that 3 review', (done)=>{
 		chai.request(app).post('/api/v1/sessions/1/review')
 		.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImlhdCI6MTU2Njc1MDY1MX0.tR7d7qDFiUHb3v5K56rMRZiBdzoJF48JsN1rupHBGLA')
@@ -769,19 +725,7 @@ describe('test session routes', (done)=>{
 			done();
 		});
 	});
-	// it('should not allow user to upgrade to mentor', (done)=>{
-	// 	chai.request(app).delete('/api/v1/user/1')
-	// 	.set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImZpcnN0TmFtZSI6ImN5bnRoaWEiLCJsYXN0TmFtZSI6ImpnZ2YiLCJpYXQiOjE1Njc3MzY4NzZ9.z9aqIbqe04Z7bGsZgBbjVAnvT_7U6uaTbwkLh6Jzv-8')
-	// 	.end((error,response)=>{
-	// 		expect(response).to.be.an('object');
-	// 		assert.equal(response.statusCode, 401);
-	// 		if (error){
-	// 			console.log(error);
-	// 			done();
-	// 		}
-	// 		done();
-	// 	});
-	// });
+	
 	
 
 });

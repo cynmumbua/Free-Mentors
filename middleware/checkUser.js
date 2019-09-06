@@ -1,5 +1,4 @@
 import usersInfo from '../models/usersInfo';
-// import Joi from 'joi';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 

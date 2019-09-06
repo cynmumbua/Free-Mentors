@@ -1,8 +1,6 @@
 
 import express from 'express';
 const router = express.Router();
-// import usersInfo from '../models/usersInfo';
-// import mentorsInfo from '../models/usersInfo';
 import Middleware from '../middleware/middleware';
 import admin from '../controllers/admin';
 import upgrade from '../middleware/upgrade';
