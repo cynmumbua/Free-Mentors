@@ -38,7 +38,27 @@ If the installation was successful, you should be able to run the following comm
 If you need to update `npm`, you can make it using `npm`! Cool right? After running the following command, just open again the command line and be happy.
 
     $ npm install npm -g
+### For developers
+Clone the source locally:
 
+```sh
+$ git clone https://github.com/cynmumbua/Free-Mentors
+```
+Install project dependencies:
+
+```sh
+$ npm install
+```
+Start the app:
+
+```sh
+$ npm start
+```
+To run tests:
+
+```sh
+$ npm test
+```
 ## Features
 - ### Users can sign up. 
 - ### Users can sign in. 
@@ -50,11 +70,77 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 - ### A mentor can decline a mentorship session request. 
 Pivotal tracker (https://www.pivotaltracker.com/n/projects/2380161)
 
-## API Documentation
+## API 
+
+Documentation:
 [Swagger] (https://app.swaggerhub.com/apis/cynmumbua/FreeMentors/1.0.0)
 
-## Deployment
+Deploymet:
 [Heroku] (https://free-mentors-api.herokuapp.com)
+
+### API Routes
+<table>
+    <tr>
+        <th>HTTP VERB</th>
+        <th>ENDPOINT</th>
+        <th>FUNCTIONALITY</th>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>[ users ] /api/v1/auth/signup</td>
+        <td>Create user account</td>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>[ users ] /api/v1/auth/signin</td>
+        <td>Sign in to user account</td>
+    </tr>
+    <tr>
+        <td>PATCH</td>
+        <td>[ admin ] /api/v1/user/:userId</td>
+        <td>Change user to mentor</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>[ users ] /api/v1/mentors</td>
+        <td>Get all available mentor</td>
+    </tr>
+     <tr>
+        <td>GET</td>
+        <td>[ users ] /api/v1/mentors/:mentorId</td>
+        <td>Get a specific mentor</td>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>[ users ] /api/v1/sessions</td>
+        <td>Create a mentorship session</td>
+    </tr>
+    <tr>
+        <td>PATCH</td>
+        <td>[ mentor ] /api/v1/sessions/:sessionId/accept</td>
+        <td>A mentor can accept a mentorship session</td>
+    </tr>
+    <tr>
+        <td>PATCH</td>
+        <td>[ mentor ] /api/v1/sessions/:sessionId/reject</td>
+        <td>A mentor can reject a mentorship session</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>[ users ] /api/v1/sessions</td>
+        <td>Get all mentorship session request</td>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>[ users ] /api/v1/sessions/:sessionId/review</td>
+        <td>A user can review a mentorship session</td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>[ admin ] /api/v1/sessions/:sessionId/review</td>
+        <td>Admin can delete session review a deemed inanpropiate</td>
+    </tr>
+</table>
 
 ## Acknowledgments
  Andela
