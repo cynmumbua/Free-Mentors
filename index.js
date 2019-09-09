@@ -5,8 +5,8 @@ const port = process.env.PORT || 5000;
 import index from './routes/index';
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(bodyParser.json());
+
 
 app.use('/', index);
 

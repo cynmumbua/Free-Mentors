@@ -185,6 +185,29 @@ h2{
     text-align: center;
 
 }
+.set{
+    margin-right: 10px;
+    background-color: #800b71;
+    border-radius: 10px;
+    height: 50px;
+    margin-top: 10px;
+    width: 120px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+}
+.set1{
+    float: left;
+    background-color: #800b71;
+    border-radius: 10px;
+    height: 50px;
+    margin-top: 10px;
+    width: 120px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+
+}
 .Dashboard .back{
     float: left;
     background-color: #800b71;
