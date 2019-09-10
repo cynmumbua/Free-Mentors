@@ -10,11 +10,13 @@ class Middleware{
 				next();
 			}catch(error){
 				return response.status(409).json({
+					status: 409,
 					message: 'invalid token'
 				});
 			}
 		}else{
 			return response.status(409).json({
+					status: 409,
 					message: 'Please input token'
 				});
 		}

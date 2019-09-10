@@ -125,17 +125,28 @@ for(let i=0; i<decline.length; i++){
 });
 
 }
+const goBack =()=>{
+	window.history.back();
+}
 const buttonMore = document.querySelectorAll('.more');
 	for(let i=0; i<buttonMore.length; i++){
 	buttonMore[i].addEventListener('click', ()=> {
         location.href = "ViewMentor.html";
     });
 }
-
+const buttonMentor = document.querySelector('.set');
+    buttonMentor.addEventListener('click', ()=>{
+	location.href = "MentorPage.html";
+});	
+const buttonAdmin = document.querySelector('.set1');
+    buttonAdmin.addEventListener('click', ()=>{
+	location.href = "Admin.html";
+});	
 
 const bookSession = document.querySelector('.bookSession');
 	bookSession.addEventListener('click', ()=>{
 	bookSession.innerHTML = "Session Booked";
 	bookSession.style.backgroundColor = "green";
 });
+
 

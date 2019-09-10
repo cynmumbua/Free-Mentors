@@ -1,20 +1,31 @@
  
-import usersInfo from '../models/usersInfo';
-
- class AuthController{
- 	static signup(request, response){
-			usersInfo.push(request.user);
-
+import {signup, signin} from '../models/createUsers';
+class AuthController{
+static async signup  (request, response) {
+		// usersInfo.push(request.user);
+		try{
+			await signup (request.user);
 			response.status(201).json({
 				status: 201,
 				message: 'user created succesfully',
+				token: request.token,
 				data: {
-					token: request.token,
+					firstName: request.user.firstName,
+					lastName: request.user.lastName,
+					email: request.user.email,
+					address: request.user.address,
+					bio: request.user.bio,
+					occupation: request.user.occupation,
+					expertise: request.user.expertise,
+					mentor: request.user.mentor
 				}
-			});
-		}
+			});	
+		}catch (error) {
+			throw error;
+		  }
+}
 
-	static signin(request,response){
+static async signin (request,response){
 
 		response.status(200).json({
 			status: 200,
@@ -26,6 +37,5 @@ import usersInfo from '../models/usersInfo';
 		
 	});	
  }
-}
- 
- export default AuthController;
+ }
+export default AuthController;

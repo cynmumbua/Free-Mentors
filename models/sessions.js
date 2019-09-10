@@ -1,21 +1,25 @@
-const sessions= [
-{
-	sessionId: 1,
-    mentorId: 2,
-    menteeId: 1,
-    questions: "hello world",
-    menteeEmail: "cynmumbua@gmail.com",
-    status: 'accepted'
-},
 
-{
-	sessionId: 2,
-    mentorId: 3,
-    menteeId: 2,
-    questions: "hello world",
-    menteeEmail: "cynmumbua@hdgaj.com",
-    status: 'accepted'
-}
-];
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
 
-module.exports= sessions;
+dotenv.config();
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL
+});
+
+
+const query = (text, params)=> {
+    return new Promise((resolve, reject) => {
+      pool.query(text, params)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      })
+    })
+  }
+
+
+export default query;

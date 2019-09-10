@@ -7,7 +7,7 @@ class Validations{
 		const schema = {
 			firstName: Joi.string().required().min(3),
 			lastName: Joi.string().required().min(3),
-			email: Joi.string().required().email(),
+			email: Joi.string().regex(/\S+@\S+\.\S+/).required().email(),
 			password: Joi.string().required().min(6),
 			address: Joi.string().required().min(3),
 			bio: Joi.string().required(),
@@ -19,6 +19,7 @@ class Validations{
 	const{error}= validateSignup(request.body);
 		if (error){
 			return response.status(409).json({
+				status: 409,
 				message: error.details[0].message
 			});
 		}
@@ -35,6 +36,7 @@ class Validations{
 		const{error} = validateSignin(request.body);
 		if (error){
 			return response.status(409).json({
+				status: 409,
 				message: error.details[0].message
 			});
 		}
