@@ -1,29 +1,31 @@
 
-// import mentorsInfo from '../models/mentorsInfo';
-//
-import { signup, getUser, userData, getMentors } from '../models/createUsers';
+import getMentors from '../models/mentorsInfo';
+import authControllers from '../controllers/auth'
+
 class Mentors{
-	static async output (data){
-		const addedUser = await getUser(data.mentor);
-		const formatted = await{
-			id: addedUser.id,
-			firstName: addedUser.firstname,
-			lastName: addedUser.lastname,
-			email: addedUser.email,
-			address: addedUser.address,
-			bio: addedUser.bio,
-			occupation: addedUser.occupation,
-			expertise: addedUser.expertise,
-			mentor: addedUser.mentor
-		}
-		return formatted;
-	}
+	
 	static async allMentors(request,response){
-		response.status(200).json({
-		status: 200,
-		data: await Mentors.output()
-		});
+		try{
+			const mentors = await getMentors();
+			if(mentors){
+				mentors.forEach((mentor)=>{
+					delete mentor.password;
+				});
+				response.status(200).json({
+					status: 200,
+					data: mentors
+				});
+			}else{
+				response.status(404).json({
+					status: 404,
+					message: 'mentors not found'
+				});
+			}			
+		}catch (error) {
+			throw error;
+		  }
 	}
+	
 	static oneMentor(request,response){
 		response.status(200).json({
 		status: 200,
