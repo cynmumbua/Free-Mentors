@@ -6,7 +6,7 @@ import mentorsM from '../middleware/mentors';
 
 router.get('/',Middleware.checkUserToken, mentors.allMentors);
 
-router.get('/:mentorId',Middleware.checkUserToken, mentorsM.viewMentor, mentors.oneMentor);
+router.get('/:mentorId',Middleware.checkUserToken, mentors.oneMentor);
 
 
 export default router;

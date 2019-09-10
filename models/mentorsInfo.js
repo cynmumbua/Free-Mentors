@@ -6,10 +6,19 @@ const getMentors = async() =>{
     try{
         const { rows } = await query(getMentor);
         return rows;
-    } catch(error){
+    }catch(error){
         return error;
     }
 }
+const getOneMentor = async(id)=>{
+	const oneMentor = `SELECT * FROM users WHERE id = $1 AND mentor= 'true'`;
+	const ids = [id];
+	try{
+		const { rows } = await query(oneMentor, ids);
+		return rows[0];
+	}catch(error){
+		return error;
+	}
+}
 
-
-module.exports= getMentors;
+module.exports= { getMentors, getOneMentor};

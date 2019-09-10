@@ -1,5 +1,5 @@
 
-import getMentors from '../models/mentorsInfo';
+import { getMentors, getOneMentor } from '../models/mentorsInfo';
 import authControllers from '../controllers/auth'
 
 class Mentors{
@@ -26,12 +26,26 @@ class Mentors{
 		  }
 	}
 	
-	static oneMentor(request,response){
-		response.status(200).json({
-		status: 200,
-		data:request.checkMentor
-		});
+	static async oneMentor(request,response){
+		try{
+			const mentor = await getOneMentor(request.params.mentorId);
+			if (mentor) {
+				delete mentor.password;
+				response.status(200).json({
+				status: 200,
+				data: await mentor
+				});
+			}else{
+				response.status(404).json({
+					status: 404,
+					message: 'mentor with that ID not found'
+				});
+			}
+		}catch(error){
+			throw error
+			}
 	}
+
 }
 
 export default Mentors;
