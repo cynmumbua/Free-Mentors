@@ -1,4 +1,4 @@
-const jwt= require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 class Middleware{
 	static checkUserToken(request,response,next){
@@ -21,4 +21,4 @@ class Middleware{
 	}
 }
 
-module.exports = Middleware;
+export default Middleware;

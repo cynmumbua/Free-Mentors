@@ -1,24 +1,16 @@
-// import express
-const express = require('express');
-
+import express from 'express';
+import bodyParser from 'body-parser';
 const app = express();
 const port = process.env.PORT || 5000;
-const auth = require('./routes/auth');
-const mentors = require('./routes/mentors');
-const sessions = require('./routes/sessions');
-const admin = require('./routes/admin');
+import index from './routes/index';
 
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.use('/api/v1/auth', auth);
 
-app.use('/api/v1/user', admin);
-
-app.use('/api/v1/mentors', mentors);
-
-app.use('/api/v1/sessions', sessions);
+app.use('/', index);
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-module.exports = app;
+export default app;

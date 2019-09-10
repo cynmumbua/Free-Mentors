@@ -5,7 +5,16 @@ const sessions= [
     menteeId: 1,
     questions: "hello world",
     menteeEmail: "cynmumbua@gmail.com",
-    status: "accepted"
+    status: 'accepted'
+},
+
+{
+	sessionId: 2,
+    mentorId: 3,
+    menteeId: 2,
+    questions: "hello world",
+    menteeEmail: "cynmumbua@hdgaj.com",
+    status: 'accepted'
 }
 ];
 
