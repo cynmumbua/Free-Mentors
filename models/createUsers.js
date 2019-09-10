@@ -35,6 +35,8 @@ const getUser = async(email) =>{
         return error;
     }
 }
+  
+
 
 module.exports= { signup, getUser };
 

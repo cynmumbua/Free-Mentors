@@ -5,7 +5,7 @@ import { signup, getUser } from '../models/createUsers';
 
 class CheckUser {
 	static async signup(request,response,next){
-		
+
 		try{
 			const checkEmail= await getUser(request.body.email);
 			const password=bcrypt.hashSync(request.body.password, 6);
@@ -21,7 +21,7 @@ class CheckUser {
 					bio: request.body.bio,
 					occupation: request.body.occupation,
 					expertise: request.body.expertise,
-					mentor: false
+					mentor: 'false'
 					}
 					// generate validation token
 				const token= jwt.sign({userId: user.userId, email: user.email, mentor: user.mentor, firstName: user.firstName, lastName:user.lastName}, 'key');
@@ -42,8 +42,9 @@ class CheckUser {
 	}
 
 
-	static signin(request,response,next){
-		const checkUser= getUser(request.body.email);
+	static async signin(request,response,next){
+		try{
+		const checkUser= await getUser(request.body.email);
 
 		if(checkUser){
 			const passwordCheck = bcrypt.compareSync(request.body.password, checkUser.password);
@@ -63,7 +64,11 @@ class CheckUser {
 				message: 'User not found'
 			});
 		 }
-	}	
+		}catch (error) {
+				throw error;
+			  }
+			
+		}	
 }
 
 export default CheckUser;
