@@ -35,43 +35,9 @@ const getUser = async(email) =>{
         return error;
     }
 }
-// const getMentors = async(mentor) =>{
-//     const getMentors = `SELECT id FROM users WHERE mentor = 'true'`;
-//     const mentors = [mentor];
-//     try{
-//         const { rows } = await query(getMentors, mentors);
-//         return rows[0];
-//     } catch(error){
-//         return error;
-//     }
-// }
-
-const userData =(data)=>{
-	const userData = `SELECT * FROM users`
-}
-const getMentors = async(mentor) => {
-    const getMentors = `SELECT * FROM users WHERE mentor = 'true'`;
-    try {
-      const { rows, rowCount } = await db.query(getMentors);
-      return { rows, rowCount };
-    } catch(error) {
-      return error;
-    }
-  }
   
-// const getOneMentor =async (request, response) {
-//     const text = 'SELECT * FROM reflections WHERE id = $1';
-//     try {
-//       const { rows } = await db.query(text, [req.params.id]);
-//       if (!rows[0]) {
-//         return res.status(404).send({'message': 'reflection not found'});
-//       }
-//       return res.status(200).send(rows[0]);
-//     } catch(error) {
-//       return res.status(400).send(error)
-//     }
-//   },
 
-module.exports= { signup, getUser, userData, getMentors };
+
+module.exports= { signup, getUser };
 
 
