@@ -49,6 +49,14 @@ class Sessions{
 				});
 			}
 	}
+// 	const getUsers = (request, response) => {
+//   pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+//     if (error) {
+//       throw error
+//     }
+//     response.status(200).json(results.rows)
+//   })
+// }
 	static acceptSession(request,response,next){
 	 	const userId =request.user.userId;
 			if(request.user.mentor == true){

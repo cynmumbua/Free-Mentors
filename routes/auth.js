@@ -1,9 +1,11 @@
-//import expres and router
+
 import express from 'express';
 const router = express.Router();
-import authController from '../controllers/auth';
 import Middleware from '../middleware/authV';
 import checkUser from '../middleware/checkUser';
+import dotenv from 'dotenv';
+import authController  from '../controllers/auth';
+
 
 
 //signup route

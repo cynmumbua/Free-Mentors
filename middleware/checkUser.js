@@ -1,11 +1,14 @@
 import usersInfo from '../models/usersInfo';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import { signup, getUser } from '../models/createUsers';
 
 class CheckUser {
-	static signup(request,response,next){
-		const checkEmail= usersInfo.some(usersInfo=>usersInfo.email=== request.body.email);
-		const password=bcrypt.hashSync(request.body.password, 6);
+	static async signup(request,response,next){
+		
+		try{
+			const checkEmail= await getUser(request.body.email);
+			const password=bcrypt.hashSync(request.body.password, 6);
 		//capture user details in an object
 		if(!checkEmail){
 				const user = {
@@ -21,18 +24,26 @@ class CheckUser {
 					mentor: false
 					}
 					// generate validation token
-					const token = jwt.sign({email: user.email}, 'key');
+				const token= jwt.sign({userId: user.userId, email: user.email, mentor: user.mentor, firstName: user.firstName, lastName:user.lastName}, 'key');
 					request.user =  user;
 					request.token = token;
 					next();
 			}else{
 				return response.status(409).json({
+					status: 409,
 					message: 'That email is already in use'
 				});
 			}
+
+		}catch (error) {
+			throw error;
+		  }
+		
 	}
+
+
 	static signin(request,response,next){
-		const checkUser= usersInfo.find(usersInfo=>usersInfo.email=== request.body.email);
+		const checkUser= getUser(request.body.email);
 
 		if(checkUser){
 			const passwordCheck = bcrypt.compareSync(request.body.password, checkUser.password);
@@ -42,11 +53,13 @@ class CheckUser {
 				next();
 			}else{
 				return response.status(409).json({
+					status: 409,
 					message: 'Password do not match'
 				});
 			}
 		}else{
 			return response.status(409).json({
+				status: 409,
 				message: 'User not found'
 			});
 		 }
