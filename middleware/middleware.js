@@ -16,7 +16,7 @@ class Middleware{
 			}
 		}else{
 			return response.status(409).json({
-					status: 409,
+					status: 400,
 					message: 'Please input token'
 				});
 		}
