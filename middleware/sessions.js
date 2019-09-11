@@ -79,22 +79,26 @@ class Sessions{
 			});
 			}
 	}
-	static declineSession(request,response,next){
+	static async declineSession(request,response,next){
 		const userId =request.user.userId;
-			if(request.user.mentor == true){
-					const rejectSession = sessions.find(sessions=>sessions.sessionId == request.params.sessionId);
+			if(request.user.mentor == 'true'){
+				try{
+					const rejectSession = await selectSessions(request.params.sessionId);
 					if(rejectSession){
-						rejectSession.status = 'rejected';
-						request.rejectSession = rejectSession;
 						next();
 					}else{
 						response.status(404).json({
+							status: 404,
 							message: 'session not found'
 						});
+					}
+				}catch(error){
+						throw error;
 					}	
-			}else{
+				}else{
 				response.status(401).json({
-				message: 'Unauthorised access'
+					status: 401,
+					message: 'Unauthorised access'
 			});
 		}
 	}
