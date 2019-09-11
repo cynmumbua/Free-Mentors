@@ -2,13 +2,15 @@ import mentorsInfo from '../models/mentorsInfo';
 import sessions from '../models/sessions';
 import usersInfo from '../models/usersInfo';
 import reviews from '../models/reviews';
+import { selectUser, selectAllUser , selectMentor } from '../models/createUsers';
 
 class Sessions{
-	static nSession(request,response,next){
-		const checkMentor= mentorsInfo.find(mentorsInfo=>mentorsInfo.userId == request.body.mentorId);
-			if(request.user.mentor == false){
+	static async nSession(request,response,next){
+		try{
+		const checkMentor= await selectMentor(request.body.mentorId);
+		 const checkUser = await selectAllUser(request.user.mentor);
+			if(checkUser){
 				if(checkMentor){
-					
 					const newSession ={
 						sessionId: sessions.length + 1,
 						mentorId: request.body.mentorId,
@@ -17,7 +19,8 @@ class Sessions{
 						menteeEmail: request.user.email,
 						status: 'pending'
 					}
-			    request.newSession = newSession;
+
+			     request.newSession = newSession;
 			    next();
 				}else{
 					 response.status(404).json({
@@ -31,6 +34,9 @@ class Sessions{
 			    	 message: 'Mentor cannot create sessions'
 			    });
 			}
+		}catch(error){
+			throw error;
+		}
 	}
 	static viewSession(request,response,next){
 		const userId =request.user.userId;

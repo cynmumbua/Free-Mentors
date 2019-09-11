@@ -22,7 +22,7 @@ export const signup = async (data) => {
   } catch (error) {
     throw error;
   }
-};
+}
 
 
 export const getUser = async(email) =>{
@@ -47,6 +47,7 @@ export const selectUser = async(id) =>{
   }
 }
 
+
 export const upgradeMentor = async(id)=>{
       const upgradeMentor = `UPDATE users SET mentor= 'true' WHERE id = $1 AND mentor='false'`;
       const upgradedUser = ` SELECT * FROM users WHERE id = $1`;
@@ -60,6 +61,50 @@ export const upgradeMentor = async(id)=>{
         return error;
       }
 }
+
+export const selectMentor = async(id) =>{
+  const selectMentor = `SELECT * FROM users WHERE id = $1 AND mentor= 'true'`;
+  const ids = [id];
+
+  try{
+    const {rows} = await query(selectMentor, ids);
+    return rows[0];
+  }catch(error){
+    return error;
+  }
+}
   
+export const sessions = async (data) => {
+  console.log(data);
+  const createQuery = `INSERT INTO
+      sessions(mentorId, menteeId, questions, menteeEmail, status)
+        VALUES($1, $2, $3, $4, $5)
+        returning *`;
+      const values = [
+        data.mentorId,
+        data.menteeId,
+        data.questions,
+        data.menteeEmail,
+        data.status
+      ];
+  try {
+    const { rows } = await query(createQuery, values);
+    return rows[0];
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const selectAllUser = async(mentor) =>{
+  const selectAllUser = `SELECT * FROM users WHERE mentor= 'false'`;
+  const mentors = [mentor];
+
+  try{
+    const {rows} = await query(selectAllUser, mentors);
+    return rows[0];
+  }catch(error){
+    return error;
+  }
+}
 
 
