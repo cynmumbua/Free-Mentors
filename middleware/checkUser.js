@@ -69,6 +69,7 @@ class CheckUser {
 			  }
 			
 		}	
+		
 }
 
 export default CheckUser;

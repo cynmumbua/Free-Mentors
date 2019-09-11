@@ -1,16 +1,23 @@
-const mentorsInfo =[
-{
-	userId: 2,
-	firstName:"cynthia",
-	lastName:"jggf",
-	email:"cynmumbua@yahoo.com",
-	password:"$2b$06$O0appTOYE18OM7EGSYKIR.AgrZCFlD6G4LnXtXngpxG18DvJrNNBO",
-	address:"juja",
-	bio:"loves pets",
-	occupation:"vet",
-	expertise:"animals",
-	mentor: true
-}
-];
 
-module.exports=mentorsInfo;
+import query  from './sessions';
+
+export const getMentors = async() =>{
+    const getMentor = `SELECT * FROM users WHERE mentor= 'true'`;
+    try{
+        const { rows } = await query(getMentor);
+        return rows;
+    }catch(error){
+        return error;
+    }
+}
+export const getOneMentor = async(id)=>{
+	const oneMentor = `SELECT * FROM users WHERE id = $1 AND mentor= 'true'`;
+	const ids = [id];
+	try{
+		const { rows } = await query(oneMentor, ids);
+		return rows[0];
+	}catch(error){
+		return error;
+	}
+}
+

@@ -1,23 +1,29 @@
-import usersInfo from '../models/usersInfo'
-
+import usersInfo from '../models/usersInfo';
+import { signup, getUser, selectUser, upgradeMentor } from '../models/createUsers';
 class Upgrade{
-	static upgradeToMentor(request,response,next){
+	static async upgradeToMentor(request,response,next){
+		
 		if(request.user.mentor == 'admin'){
-			const upgradeUser = usersInfo.find(usersInfo=>usersInfo.userId == request.params.userId);
+			try{
+			const upgradeUser = await selectUser(request.params.userId);
 			if(upgradeUser){
-				upgradeUser.mentor = true;
-				request.upgradeUser = upgradeUser;
 				next();	
 			}else{
 				response.status(404).json({
+					status: 404,
 					message: 'user not found'
 				});
-			}	
+			}
+			}catch(error){
+		throw error;
+	}	
 		}else{
 			response.status(401).json({
-			message: 'Unauthorised access'
+				status: 401,
+				message: 'Unauthorised access'
 		});
 		}
+	
 
 	}
 }
