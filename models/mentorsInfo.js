@@ -1,7 +1,7 @@
 
 import query  from './sessions';
 
-const getMentors = async() =>{
+export const getMentors = async() =>{
     const getMentor = `SELECT * FROM users WHERE mentor= 'true'`;
     try{
         const { rows } = await query(getMentor);
@@ -10,7 +10,7 @@ const getMentors = async() =>{
         return error;
     }
 }
-const getOneMentor = async(id)=>{
+export const getOneMentor = async(id)=>{
 	const oneMentor = `SELECT * FROM users WHERE id = $1 AND mentor= 'true'`;
 	const ids = [id];
 	try{
@@ -21,4 +21,3 @@ const getOneMentor = async(id)=>{
 	}
 }
 
-module.exports= { getMentors, getOneMentor};

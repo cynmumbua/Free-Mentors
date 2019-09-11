@@ -1,6 +1,6 @@
 import query  from './sessions';
 
-const signup = async (data) => {
+export const signup = async (data) => {
   const createQuery = `INSERT INTO
       users(firstName,lastName,email,password,address,bio,occupation,expertise,mentor)
 	      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)
@@ -25,7 +25,7 @@ const signup = async (data) => {
 };
 
 
-const getUser = async(email) =>{
+export const getUser = async(email) =>{
     const getUser = `SELECT * FROM users WHERE email = $1`;
     const emails = [email];
     try{
@@ -35,9 +35,31 @@ const getUser = async(email) =>{
         return error;
     }
 }
+export const selectUser = async(id) =>{
+  const selectUser = `SELECT * FROM users WHERE id = $1 AND mentor= 'false'`;
+  const ids = [id];
+
+  try{
+    const {rows} = await query(selectUser, ids);
+    return rows[0];
+  }catch(error){
+    return error;
+  }
+}
+
+export const upgradeMentor = async(id)=>{
+      const upgradeMentor = `UPDATE users SET mentor= 'true' WHERE id = $1 AND mentor='false'`;
+      const upgradedUser = ` SELECT * FROM users WHERE id = $1`;
+      const ids = [id];
+
+      try{
+        const upgradeUserQuery = await query(upgradeMentor, ids);
+        const { rows } =await query(upgradedUser, ids);
+        return rows[0];
+      }catch(error){
+        return error;
+      }
+}
   
-
-
-module.exports= { signup, getUser };
 
 
