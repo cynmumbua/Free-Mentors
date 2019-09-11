@@ -106,5 +106,24 @@ export const selectAllUser = async(mentor) =>{
     return error;
   }
 }
+export const selectSessions = async(id) =>{
+  const selectSessions = `SELECT * FROM sessions WHERE id = $1 AND status='pending' `;
+  const ids = [id];
 
-
+  try{
+    const {rows} = await query(selectSessions, ids);
+    return rows[0];
+  }catch(error){
+    return error;
+  }
+}
+export const acceptSession = async(id)=>{
+      const acceptSession = `UPDATE sessions SET status= 'accepted' WHERE id = $1 returning *`;
+      const ids = [id];
+      try{
+        const {rows} = await query(acceptSession,ids);
+        return rows[0];
+      }catch(error){
+        return error;
+      }
+}
