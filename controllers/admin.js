@@ -7,6 +7,7 @@ class Admin{
 		delete admin.password;
 		response.status(200).json({
     	status: 200,
+    	message: 'User upgraded to mentor successfully',
     	data: admin
 		});	
 	}catch(error){
