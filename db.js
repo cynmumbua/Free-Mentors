@@ -43,23 +43,20 @@ const createSessionsTable =() =>{
     `CREATE TABLE IF NOT EXISTS
       sessions(
         id SERIAL PRIMARY KEY,
-		mentorId INT(10) NOT NULL,
-		menteeId INT(10) NOT NULL,
+		mentorId INT NOT NULL,
+		menteeId INT NOT NULL,
 		questions VARCHAR(128) NOT NULL,
 		menteeEmail VARCHAR(128) NOT NULL,
-		status VARCHAR(128) NOT NULL,
-		expertise VARCHAR(128) NOT NULL ,
-		mentor boolean     
+		status VARCHAR(128) NOT NULL  
       )`;
-
   pool.query(queryText)
     .then((res) => {
       console.log(res);
-      pool.end();
+      // pool.end();
     })
     .catch((err) => {
       console.log(err);
-      pool.end();
+      // pool.end();
     });
 }
 
@@ -99,8 +96,7 @@ const dropUsersTable = () => {
       // pool.end();
     });
 }
-
-const dropSessionsTable = () => {
+ const dropSessionsTable = () => {
   const queryText = 'DROP TABLE IF EXISTS sessions';
   pool.query(queryText)
     .then((res) => {

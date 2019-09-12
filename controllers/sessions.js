@@ -1,16 +1,20 @@
 
 import mentorsInfo from '../models/mentorsInfo';
-import sessions from '../models/sessions';
 import usersInfro from '../models/usersInfo';
 import reviews from '../models/reviews';
+import { signup, getUser, selectUser, sessions } from '../models/createUsers';
+
 
 class Sessions{
-	static createSession(request,response){
 
-			    sessions.push(request.newSession);
+	static async createSession(request,response){
+
+			   const newSession = await sessions (request.newSession);
+
 			    response.status(201).json({
 			    	status: 201,
-			    	data: request.newSession
+			    	message: 'Session created successfully',
+			    	data: await newSession
 			    });
 	
 	}

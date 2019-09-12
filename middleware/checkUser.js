@@ -23,10 +23,7 @@ class CheckUser {
 					expertise: request.body.expertise,
 					mentor: 'false'
 					}
-					// generate validation token
-				const token= jwt.sign({userId: user.userId, email: user.email, mentor: user.mentor, firstName: user.firstName, lastName:user.lastName}, 'key');
 					request.user =  user;
-					request.token = token;
 					next();
 			}else{
 				return response.status(409).json({
@@ -47,9 +44,10 @@ class CheckUser {
 		const checkUser= await getUser(request.body.email);
 
 		if(checkUser){
+			console.log(checkUser)
 			const passwordCheck = bcrypt.compareSync(request.body.password, checkUser.password);
 			if(passwordCheck){
-				const token= jwt.sign({userId: checkUser.userId, email: checkUser.email, mentor: checkUser.mentor, firstName: checkUser.firstName, lastName:checkUser.lastName}, 'key');
+				const token= jwt.sign({userId: checkUser.id, email: checkUser.email, mentor: checkUser.mentor, firstName: checkUser.firstname, lastName:checkUser.lastname}, 'key');
 				request.token = token;
 				next();
 			}else{

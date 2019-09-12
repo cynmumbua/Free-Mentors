@@ -1,30 +1,19 @@
  
 import { signup, getUser, userData } from '../models/createUsers';
+import jwt from 'jsonwebtoken';
 class AuthController{
 
-	static async output (data){
-		const addedUser = await getUser(data.email);
-		const formatted = await{
-			id: addedUser.id,
-			firstName: addedUser.firstname,
-			lastName: addedUser.lastname,
-			email: addedUser.email,
-			address: addedUser.address,
-			bio: addedUser.bio,
-			occupation: addedUser.occupation,
-			expertise: addedUser.expertise,
-			mentor: addedUser.mentor
-		}
-		return formatted;
-	}
 	static async signup  (request, response) {
 		try{
-			await signup (request.user);
+			const output = await signup (request.user);
+			const token= jwt.sign({userId: output.id, email: request.user.email, mentor: request.user.mentor, firstName: request.user.firstName, lastName: request.user.lastName}, 'key');
+
+			delete output.password;
 			response.status(201).json({
 				status: 201,
 				message: 'user created succesfully',
-				token: request.token,
-				data: await AuthController.output(request.user)
+				data: await output,
+				token: token,
 			});	
 		}catch (error) {
 			throw error;
@@ -33,11 +22,13 @@ class AuthController{
 }
 
 	static async signin (request,response){
+		const output = await getUser(request.body.email);
+		delete output.password;
 		response.status(200).json({
 			status: 200,
 			message: 'User is succesfully logged in',
-			token:request.token,
-			data: await AuthController.output(request.body)		
+			data: await output,
+			token:request.token,	
 	});	
 
  }

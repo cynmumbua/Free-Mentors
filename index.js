@@ -6,6 +6,9 @@ import index from './routes/index';
 import db from './db';
 
 db.createUsersTable();
+db.createSessionsTable();
+
+// db.createSessionsTable();
 // db.dropUsersTable();
 
 app.use(bodyParser.urlencoded({ extended: true }));
