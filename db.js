@@ -2,11 +2,13 @@ import { Pool } from 'pg';
 import dotenv  from 'dotenv';
 
 dotenv.config();
+let pool;
+if(process.env.NODE_ENV == 'test'){
+	pool= new Pool ({connectionString: process.env.TEST_DATABASE})
+	console.log(pool)
+}
+pool = new Pool({connectionString: process.env.DATABASE_URL });
 
-const pool = new Pool({
- connectionString: process.env.DATABASE_URL,
- connectionString: process.env.TEST_DATABASE
-});
 
 pool.on('connect', () => {
   console.log('connected to the db');
