@@ -127,3 +127,14 @@ export const acceptSession = async(id)=>{
         return error;
       }
 }
+
+export const rejectSession = async(id)=>{
+      const rejectSession = `UPDATE sessions SET status= 'rejected' WHERE id = $1 returning *`;
+      const ids = [id];
+      try{
+        const {rows} = await query(rejectSession,ids);
+        return rows[0];
+      }catch(error){
+        return error;
+      }
+}
