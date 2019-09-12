@@ -2,7 +2,7 @@ import mentorsInfo from '../models/mentorsInfo';
 import sessions from '../models/sessions';
 import usersInfo from '../models/usersInfo';
 import reviews from '../models/reviews';
-import { selectUser, selectAllUser , selectMentor } from '../models/createUsers';
+import { selectUser, selectAllUser , selectMentor, selectSessions } from '../models/createUsers';
 
 class Sessions{
 	static async nSession(request,response,next){
@@ -55,30 +55,27 @@ class Sessions{
 				});
 			}
 	}
-// 	const getUsers = (request, response) => {
-//   pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
-//     if (error) {
-//       throw error
-//     }
-//     response.status(200).json(results.rows)
-//   })
-// }
-	static acceptSession(request,response,next){
+
+	static async acceptSession(request,response,next){
 	 	const userId =request.user.userId;
-			if(request.user.mentor == true){
-					const acceptSession = sessions.find(sessions=>sessions.sessionId == request.params.sessionId);
+			if(request.user.mentor == 'true'){
+				try{
+					const acceptSession = await selectSessions(request.params.sessionId);
 					if(acceptSession){
-						acceptSession.status = 'accepted';
-						request.acceptSession = acceptSession;
 						next();
 					}else{
 						response.status(404).json({
+							status: 404,
 							message: 'session not found'
 						});
-					}	
+					}
+					}catch(error){
+						throw error;
+					}
 			}else{
 				response.status(401).json({
-				message: 'Unauthorised access'
+					status: 401,
+					message: 'Unauthorised access'
 			});
 			}
 	}

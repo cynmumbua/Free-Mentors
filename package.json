@@ -4,7 +4,7 @@
   "description": "Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha --require @babel/register --exit",
+    "test": "nyc mocha --require @babel/register --@babel/polyfill --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "start": "nodemon index.js --exec babel-node --preset env"
   },
@@ -28,6 +28,7 @@
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^6.2.0",
+    "regenerator-runtime": "^0.13.3",
     "request": "^2.88.0"
   },
   "devDependencies": {
