@@ -3,7 +3,7 @@ const user = {
  	signup : {
 		firstName: 'Cynthia',
 		lastName: 'muinde',
-		email: 'sohgfh@hggh.com',
+		email: 'test@gmail.com',
 		password: '123!qaaa',
 		address: 'juja',
 		bio: 'Christ follower',
@@ -99,7 +99,7 @@ const user = {
 		password: '12345'
 	},
 	login : {
-		email: 'cynmumbua@gmail.com',
+		email: 'test@gmail.com',
 		password: 'gost12',
 	},
 	sessions :{
@@ -121,7 +121,7 @@ const user = {
 	viewMentorT:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN5bm11bWJ1YUB5YWhvby5jb20iLCJpYXQiOjE1NjY2MzM1NTl9.gfvLG0yZe29S9CVv4f2NJvUm0U62TIeFf9Whp-ZG78M',
 	sessionT:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiY3lubXVtYnVhQGdtYWlsLmNvbSIsIm1lbnRvciI6ZmFsc2UsImlhdCI6MTU2Njc1MDY1MX0.tR7d7qDFiUHb3v5K56rMRZiBdzoJF48JsN1rupHBGLA',
 	sessionMT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiY3lubXVtYnVhQHlhaG9vLmNvbSIsIm1lbnRvciI6dHJ1ZSwiaWF0IjoxNTY2NzU1NzI4fQ.PpKb1N3qBTjWwE_njrQphTQniWPa8GB3zWL1dcCSCmg',
-	sessionmMT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiY3lubXVtYnVhQHlhaG9vLmNvbSIsIm1lbnRvciI6dHJ1ZSwiaWF0IjoxNTY2NzU5NDE0fQ.toDKOoMyFbAjukKkwNf9-1Zn-44LhrPwJfVfvQ5svdM',
+	sessionmMT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYwLCJlbWFpbCI6ImN5bkB5YWhvby5jb20iLCJtZW50b3IiOiJ0cnVlIiwiZmlyc3ROYW1lIjoiam9oaGluIiwibGFzdE5hbWUiOiJqZ2dmIiwiaWF0IjoxNTY4MjMxMDc2fQ.nfyNlbYwqVi7Dw-XWhb_6SZR_DmnNsC-ZSRo0cAZuUk',
 	sessionAT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoiY3lubXVtYnVhQGdpdGh1Yi5jb20iLCJtZW50b3IiOiJhZG1pbiIsImZpcnN0TmFtZSI6ImN5bnRoaWEiLCJsYXN0TmFtZSI6ImpnZ2YiLCJpYXQiOjE1NjcxMTE0MzN9.cvFn2_iDBc4LUE_dUXxITwp6jwmWhJ5W56INHRkZtro',
 }
 

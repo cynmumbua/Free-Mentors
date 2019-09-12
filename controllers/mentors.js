@@ -13,6 +13,7 @@ class Mentors{
 				});
 				response.status(200).json({
 					status: 200,
+					message: 'Succesfuly retrived all the mentors',
 					data: mentors
 				});
 			}else{
@@ -33,6 +34,7 @@ class Mentors{
 				delete mentor.password;
 				response.status(200).json({
 				status: 200,
+				message: 'More about the mentor',
 				data: await mentor
 				});
 			}else{
