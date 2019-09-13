@@ -30,6 +30,7 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-regenerator": "^7.4.5",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
@@ -44,7 +45,6 @@
     "make-command-runnable": "^1.2.0",
     "mocha": "^6.2.0",
     "pg": "^7.12.1",
-    "regenerator-runtime": "^0.13.3",
     "request": "^2.88.0"
   },
   "devDependencies": {
