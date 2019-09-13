@@ -12,6 +12,7 @@ class Validate{
 	const{error}= validateQuestion(request.body);
 		if (error){
 			return response.status(409).json({
+				status: 409,
 				message: error.details[0].message
 			});
 		}
@@ -28,6 +29,7 @@ class Validate{
 		const{error} =  validateReview(request.body);
 			if(error){
 				return response.status(409).json({
+					status: 409,
 					message: error.details[0].message
 				});
 			}

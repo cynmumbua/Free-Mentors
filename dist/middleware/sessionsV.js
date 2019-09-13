@@ -25,6 +25,7 @@ class Validate {
 
     if (error) {
       return response.status(409).json({
+        status: 409,
         message: error.details[0].message
       });
     }
@@ -47,6 +48,7 @@ class Validate {
 
     if (error) {
       return response.status(409).json({
+        status: 409,
         message: error.details[0].message
       });
     }

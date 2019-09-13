@@ -75,7 +75,6 @@ export const selectMentor = async(id) =>{
 }
   
 export const sessions = async (data) => {
-  console.log(data);
   const createQuery = `INSERT INTO
       sessions(mentorId, menteeId, questions, menteeEmail, status)
         VALUES($1, $2, $3, $4, $5)
@@ -87,6 +86,7 @@ export const sessions = async (data) => {
         data.menteeEmail,
         data.status
       ];
+
   try {
     const { rows } = await query(createQuery, values);
     return rows[0];
