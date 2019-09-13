@@ -134,13 +134,20 @@ const buttonMore = document.querySelectorAll('.more');
         location.href = "ViewMentor.html";
     });
 }
+// const el = document.querySelector('.set');
+// if(el){
 const buttonMentor = document.querySelector('.set');
     buttonMentor.addEventListener('click', ()=>{
 	location.href = "MentorPage.html";
 });	
+    
 const buttonAdmin = document.querySelector('.set1');
     buttonAdmin.addEventListener('click', ()=>{
 	location.href = "Admin.html";
+});	
+const buttonlog = document.querySelector('.logOut');
+    buttonlog.addEventListener('click', ()=>{
+	location.href = "index.html";
 });	
 
 const bookSession = document.querySelector('.bookSession');

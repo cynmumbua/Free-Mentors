@@ -99,7 +99,6 @@ const selectMentor = async id => {
 exports.selectMentor = selectMentor;
 
 const sessions = async data => {
-  console.log(data);
   const createQuery = `INSERT INTO
       sessions(mentorId, menteeId, questions, menteeEmail, status)
         VALUES($1, $2, $3, $4, $5)
