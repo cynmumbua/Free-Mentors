@@ -1,15 +1,15 @@
 import mentorsInfo from '../models/mentorsInfo';
-import sessions from '../models/sessions';
+// import sessions from '../models/sessions';
 import usersInfo from '../models/usersInfo';
 import reviews from '../models/reviews';
-import { selectUser, selectAllUser , selectMentor, selectSessions } from '../models/createUsers';
+import { selectUser, selectAllUser , selectMentor, selectSessions, sessions } from '../models/createUsers';
 
 class Sessions{
 	static async nSession(request,response,next){
 		try{
 		const checkMentor= await selectMentor(request.body.mentorId);
-		 const checkUser = await selectAllUser(request.user.mentor);
-			if(checkUser){
+		 
+			if(request.user.mentor == 'false'){
 				if(checkMentor){
 					const newSession ={
 						sessionId: sessions.length + 1,
@@ -58,6 +58,9 @@ class Sessions{
 
 	static async acceptSession(request,response,next){
 	 	const userId =request.user.userId;
+	 	// const neSession = sessions.nSession;
+		 //   const newSession = await sessions(request.newSession);
+		 //   if( request.user.userId == newSession.mentorid){
 			if(request.user.mentor == 'true'){
 				try{
 					const acceptSession = await selectSessions(request.params.sessionId);
@@ -78,6 +81,12 @@ class Sessions{
 					message: 'Unauthorised access'
 			});
 			}
+		// }else{
+		// 	response.status(401).json({
+		// 	status: 401,
+		// 	message: 'Unauthorised access'
+		// 	});
+		// }
 	}
 	static async declineSession(request,response,next){
 		const userId =request.user.userId;

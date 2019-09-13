@@ -7,8 +7,6 @@ exports.default = void 0;
 
 var _mentorsInfo = _interopRequireDefault(require("../models/mentorsInfo"));
 
-var _sessions = _interopRequireDefault(require("../models/sessions"));
-
 var _usersInfo = _interopRequireDefault(require("../models/usersInfo"));
 
 var _reviews = _interopRequireDefault(require("../models/reviews"));
@@ -17,16 +15,16 @@ var _createUsers = require("../models/createUsers");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import sessions from '../models/sessions';
 class Sessions {
   static async nSession(request, response, next) {
     try {
       const checkMentor = await (0, _createUsers.selectMentor)(request.body.mentorId);
-      const checkUser = await (0, _createUsers.selectAllUser)(request.user.mentor);
 
-      if (checkUser) {
+      if (request.user.mentor == 'false') {
         if (checkMentor) {
           const newSession = {
-            sessionId: _sessions.default.length + 1,
+            sessionId: _createUsers.sessions.length + 1,
             mentorId: request.body.mentorId,
             menteeId: request.user.userId,
             questions: request.body.questions,
@@ -56,12 +54,12 @@ class Sessions {
     const userId = request.user.userId;
 
     if (request.user.mentor == false) {
-      const mentorSessions = _sessions.default.filter(sessions => sessions.menteeId == userId);
+      const mentorSessions = _createUsers.sessions.filter(sessions => sessions.menteeId == userId);
 
       request.mentorSessions = mentorSessions;
       next();
     } else if (request.user.mentor == true) {
-      const mentorSessions = _sessions.default.filter(sessions => sessions.mentorId == userId);
+      const mentorSessions = _createUsers.sessions.filter(sessions => sessions.mentorId == userId);
 
       request.mentorSessions = mentorSessions;
       next();
@@ -73,7 +71,9 @@ class Sessions {
   }
 
   static async acceptSession(request, response, next) {
-    const userId = request.user.userId;
+    const userId = request.user.userId; // const neSession = sessions.nSession;
+    //   const newSession = await sessions(request.newSession);
+    //   if( request.user.userId == newSession.mentorid){
 
     if (request.user.mentor == 'true') {
       try {
@@ -95,7 +95,13 @@ class Sessions {
         status: 401,
         message: 'Unauthorised access'
       });
-    }
+    } // }else{
+    // 	response.status(401).json({
+    // 	status: 401,
+    // 	message: 'Unauthorised access'
+    // 	});
+    // }
+
   }
 
   static async declineSession(request, response, next) {
@@ -125,7 +131,7 @@ class Sessions {
   }
 
   static reviewSession(request, response, next) {
-    const requestedSession = _sessions.default.find(sessions => sessions.sessionId == request.params.sessionId);
+    const requestedSession = _createUsers.sessions.find(sessions => sessions.sessionId == request.params.sessionId);
 
     if (requestedSession) {
       if (requestedSession.menteeId == request.user.userId) {
