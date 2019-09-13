@@ -13,7 +13,7 @@
     "start": "npm run build && node ./dist/index.js ",
     "dev": "nodemon index.js --exec babel-node --preset env",
     "build": "babel ./ --out -d dist --ignore test,node_modules,UI",
-    "create": "babel-node ./db.js",
+    "create": "babel-node ./dist/db.js",
     "heroku-postbuild": "npm run create"
   },
   "repository": {
